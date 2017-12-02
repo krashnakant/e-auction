@@ -1,0 +1,19 @@
+{
+    "home": {
+        "title": "Welcome, e-Auction!",
+        "subtitle": "This is your homepage",
+        "logged": {
+            "message": "You are logged in as user \"{{username}}\"."
+        },
+        "question": "If you have any question on e-Auction:",
+        "link": {
+            "homepage": "e-Auction homepage",
+            "stackoverflow": "e-Auction on Stack Overflow",
+            "bugtracker": "e-Auction bug tracker",
+            "chat": "e-Auction public chat room",
+            "follow": "follow @java_hipster on Twitter"
+        },
+        "like": "If you like e-Auction, don't forget to give us a star on",
+        "github": "GitHub"
+    }
+}

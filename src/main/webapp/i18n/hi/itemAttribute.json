@@ -1,0 +1,23 @@
+{
+    "eauctionApp": {
+        "itemAttribute" : {
+            "home": {
+                "title": "ItemAttributes",
+                "createLabel": "नया Item Attribute बनाएँ",
+                "createOrEditLabel": "Item Attribute बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Item Attribute [identifier: {{ param }}] तैयार है",
+            "updated": "एक Item Attribute [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Item Attribute [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Item Attribute [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Item Attribute"
+            },
+            "value": "Value",
+            "attribute": "Attribute",
+            "item": "Item"
+        }
+    }
+}

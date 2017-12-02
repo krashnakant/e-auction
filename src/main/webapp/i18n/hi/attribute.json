@@ -1,0 +1,22 @@
+{
+    "eauctionApp": {
+        "attribute" : {
+            "home": {
+                "title": "Attributes",
+                "createLabel": "नया Attribute बनाएँ",
+                "createOrEditLabel": "Attribute बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Attribute [identifier: {{ param }}] तैयार है",
+            "updated": "एक Attribute [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Attribute [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Attribute [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Attribute"
+            },
+            "attributeName": "Attribute Name",
+            "subCategory": "Sub Category"
+        }
+    }
+}

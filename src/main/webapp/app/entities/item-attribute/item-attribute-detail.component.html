@@ -1,0 +1,37 @@
+
+<div *ngIf="itemAttribute">
+    <h2><span jhiTranslate="eauctionApp.itemAttribute.detail.title">Item Attribute</span> {{itemAttribute.id}}</h2>
+    <hr>
+    <app-alert-error></app-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eauctionApp.itemAttribute.value">Value</span></dt>
+        <dd>
+            <span>{{itemAttribute.value}}</span>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.itemAttribute.attribute">Attribute</span></dt>
+        <dd>
+            <div *ngIf="itemAttribute.attributeId">
+                <a [routerLink]="['/attribute', itemAttribute.attributeId]">{{itemAttribute.attributeId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.itemAttribute.item">Item</span></dt>
+        <dd>
+            <div *ngIf="itemAttribute.itemId">
+                <a [routerLink]="['/item', itemAttribute.itemId]">{{itemAttribute.itemId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'item-attribute/'+ itemAttribute.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

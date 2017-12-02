@@ -1,0 +1,51 @@
+
+<div *ngIf="item">
+    <h2><span jhiTranslate="eauctionApp.item.detail.title">Item</span> {{item.id}}</h2>
+    <hr>
+    <app-alert-error></app-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eauctionApp.item.itemTitle">Item Title</span></dt>
+        <dd>
+            <span>{{item.itemTitle}}</span>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.item.itemDescription">Item Description</span></dt>
+        <dd>
+            <div *ngIf="item.itemDescription">
+                <a (click)="openFile(item.itemDescriptionContentType, item.itemDescription)" jhiTranslate="entity.action.open">open</a>
+                {{item.itemDescriptionContentType}}, {{byteSize(item.itemDescription)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.item.itemImage">Item Image</span></dt>
+        <dd>
+            <div *ngIf="item.itemImage">
+                <a (click)="openFile(item.itemImageContentType, item.itemImage)">
+                    <img [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" style="max-width: 100%;" alt="item image"/>
+                </a>
+                {{item.itemImageContentType}}, {{byteSize(item.itemImage)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.item.basePrice">Base Price</span></dt>
+        <dd>
+            <span>{{item.basePrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.item.sale">Sale</span></dt>
+        <dd>
+            <div *ngIf="item.saleId">
+                <a [routerLink]="['/sale', item.saleId]">{{item.saleId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

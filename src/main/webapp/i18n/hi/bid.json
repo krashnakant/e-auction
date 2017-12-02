@@ -1,0 +1,23 @@
+{
+    "eauctionApp": {
+        "bid" : {
+            "home": {
+                "title": "Bids",
+                "createLabel": "नया Bid बनाएँ",
+                "createOrEditLabel": "Bid बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Bid [identifier: {{ param }}] तैयार है",
+            "updated": "एक Bid [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Bid [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Bid [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Bid"
+            },
+            "bidPrice": "Bid Price",
+            "item": "Item",
+            "account": "Account"
+        }
+    }
+}

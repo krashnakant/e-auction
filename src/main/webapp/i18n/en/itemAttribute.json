@@ -1,0 +1,23 @@
+{
+    "eauctionApp": {
+        "itemAttribute" : {
+            "home": {
+                "title": "Item Attributes",
+                "createLabel": "Create a new Item Attribute",
+                "createOrEditLabel": "Create or edit a Item Attribute"
+            },
+            "created": "A new Item Attribute is created with identifier {{ param }}",
+            "updated": "A Item Attribute is updated with identifier {{ param }}",
+            "deleted": "A Item Attribute is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Item Attribute {{ id }}?"
+            },
+            "detail": {
+                "title": "Item Attribute"
+            },
+            "value": "Value",
+            "attribute": "Attribute",
+            "item": "Item"
+        }
+    }
+}

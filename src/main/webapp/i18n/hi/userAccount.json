@@ -1,0 +1,23 @@
+{
+    "eauctionApp": {
+        "userAccount" : {
+            "home": {
+                "title": "UserAccounts",
+                "createLabel": "नया User Account बनाएँ",
+                "createOrEditLabel": "User Account बनाएँ या संपादित करें"
+            },
+            "created": "एक नया User Account [identifier: {{ param }}] तैयार है",
+            "updated": "एक User Account [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "User Account [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "User Account [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "User Account"
+            },
+            "accountType": "Account Type",
+            "user": "User",
+            "sales": "Sales"
+        }
+    }
+}

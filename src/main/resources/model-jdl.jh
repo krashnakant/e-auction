@@ -1,0 +1,70 @@
+entity Category {
+	categoryName String required,
+    categoryImage ImageBlob
+}
+
+entity SubCategory {
+	subCategoryName String required
+}
+
+entity Attribute {
+	attributeName String
+}
+
+entity Item {
+	itemTitle String required,
+	itemDescription Blob required,
+    itemImage ImageBlob,
+    basePrice BigDecimal required min(1)
+}
+
+entity ItemAttribute {
+	value String required
+}
+
+entity Sale {
+	auctionTitle String required,
+    start ZonedDateTime required,
+    end ZonedDateTime required
+}
+
+entity Bid {
+	bidPrice BigDecimal required min(1)
+}
+
+enum UserAccountType {
+	SELLER, BUYER
+}
+
+entity UserAccount {
+	accountType UserAccountType
+}
+
+relationship OneToOne {
+	UserAccount{user} to User
+}
+
+relationship OneToMany {
+	Category{subCategories} to SubCategory{category},
+    SubCategory{attributes} to Attribute{subCategory},
+    Item{itemAttributes} to ItemAttribute{item},
+    Sale{items} to Item{sale}
+}
+
+relationship ManyToOne {
+    ItemAttribute{attribute} to Attribute,
+    Sale{category} to Category,
+    Bid{item} to Item,
+    Bid{account} to UserAccount
+}
+
+relationship ManyToMany {
+	Sale{accounts} to UserAccount{sales}
+}
+
+paginate Item, Bid with infinite-scroll
+paginate Sale with pagination
+
+dto * with mapstruct
+
+service all with serviceImpl except Attribute, ItemAttribute

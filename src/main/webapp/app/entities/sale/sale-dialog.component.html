@@ -1,0 +1,83 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySaleLabel" jhiTranslate="eauctionApp.sale.home.createOrEditLabel">Create or edit a Sale</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <app-alert-error></app-alert-error>
+        <div class="form-group" [hidden]="!sale.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="sale.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eauctionApp.sale.auctionTitle" for="field_auctionTitle">Auction Title</label>
+            <input type="text" class="form-control" name="auctionTitle" id="field_auctionTitle"
+                [(ngModel)]="sale.auctionTitle" required/>
+            <div [hidden]="!(editForm.controls.auctionTitle?.dirty && editForm.controls.auctionTitle?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.auctionTitle?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eauctionApp.sale.start" for="field_start">Start</label>
+            <div class="d-flex">
+                <input id="field_start" type="datetime-local" class="form-control" name="start" [(ngModel)]="sale.start"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.start?.dirty && editForm.controls.start?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.start?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.start?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eauctionApp.sale.end" for="field_end">End</label>
+            <div class="d-flex">
+                <input id="field_end" type="datetime-local" class="form-control" name="end" [(ngModel)]="sale.end"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.end?.dirty && editForm.controls.end?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.end?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.end?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eauctionApp.sale.category" for="field_category">Category</label>
+            <select class="form-control" id="field_category" name="category" [(ngModel)]="sale.categoryId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eauctionApp.sale.accounts" for="field_accounts">Accounts</label>
+            <select class="form-control" id="field_accounts" multiple name="accounts" [(ngModel)]="sale.accounts">
+                <option [ngValue]="getSelected(sale.accounts, userAccountOption)" *ngFor="let userAccountOption of useraccounts; trackBy: trackUserAccountById">{{userAccountOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

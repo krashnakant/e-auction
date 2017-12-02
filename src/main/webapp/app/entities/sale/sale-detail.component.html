@@ -1,0 +1,45 @@
+
+<div *ngIf="sale">
+    <h2><span jhiTranslate="eauctionApp.sale.detail.title">Sale</span> {{sale.id}}</h2>
+    <hr>
+    <app-alert-error></app-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eauctionApp.sale.auctionTitle">Auction Title</span></dt>
+        <dd>
+            <span>{{sale.auctionTitle}}</span>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.sale.start">Start</span></dt>
+        <dd>
+            <span>{{sale.start | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.sale.end">End</span></dt>
+        <dd>
+            <span>{{sale.end | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.sale.category">Category</span></dt>
+        <dd>
+            <div *ngIf="sale.categoryId">
+                <a [routerLink]="['/category', sale.categoryId]">{{sale.categoryId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eauctionApp.sale.accounts">Accounts</span></dt>
+        <dd>
+            <span *ngFor="let accounts of sale.accounts; let last = last">
+                <a [routerLink]="['/user-account', accounts?.id ]">{{accounts.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sale/'+ sale.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

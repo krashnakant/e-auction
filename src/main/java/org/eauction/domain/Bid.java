@@ -1,0 +1,114 @@
+package org.eauction.domain;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Objects;
+
+
+/**
+ * A Bid.
+ */
+@Entity
+@Table(name = "bid")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class Bid implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @DecimalMin(value = "1")
+    @Column(name = "bid_price", precision=10, scale=2, nullable = false)
+    private BigDecimal bidPrice;
+
+    @ManyToOne
+    private Item item;
+
+    @ManyToOne
+    private UserAccount account;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BigDecimal getBidPrice() {
+        return bidPrice;
+    }
+
+    public Bid bidPrice(BigDecimal bidPrice) {
+        this.bidPrice = bidPrice;
+        return this;
+    }
+
+    public void setBidPrice(BigDecimal bidPrice) {
+        this.bidPrice = bidPrice;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public Bid item(Item item) {
+        this.item = item;
+        return this;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public UserAccount getAccount() {
+        return account;
+    }
+
+    public Bid account(UserAccount userAccount) {
+        this.account = userAccount;
+        return this;
+    }
+
+    public void setAccount(UserAccount userAccount) {
+        this.account = userAccount;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Bid bid = (Bid) o;
+        if (bid.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), bid.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Bid{" +
+            "id=" + getId() +
+            ", bidPrice=" + getBidPrice() +
+            "}";
+    }
+}

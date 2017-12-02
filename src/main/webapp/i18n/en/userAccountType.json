@@ -1,0 +1,9 @@
+{
+    "eauctionApp": {
+        "UserAccountType" : {
+            "null": "",
+            "SELLER": "SELLER",
+            "BUYER": "BUYER"
+        }
+    }
+}
