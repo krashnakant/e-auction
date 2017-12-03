@@ -1,6 +1,11 @@
 package org.eauction.service.impl;
 
 import org.eauction.service.SaleService;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eauction.domain.Sale;
 import org.eauction.repository.SaleRepository;
 import org.eauction.service.dto.SaleDTO;
@@ -83,4 +88,20 @@ public class SaleServiceImpl implements SaleService{
         log.debug("Request to delete Sale : {}", id);
         saleRepository.delete(id);
     }
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<SaleDTO> findAllByCategory_Id(Long id) {
+		log.debug("Request to get all Sales by Category Id");
+        return saleRepository.findAllByCategory_Id(id).stream()
+            .map(saleMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Long count() {
+		// TODO Auto-generated method stub
+		return saleRepository.count();
+	}
 }

@@ -5,4 +5,6 @@ export * from './category-dialog.component';
 export * from './category-delete-dialog.component';
 export * from './category-detail.component';
 export * from './category.component';
+export * from './category-list/category-list.component';
+export * from './category-label/category-label.component';
 export * from './category.route';

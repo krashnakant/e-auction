@@ -10,6 +10,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class ItemAttributeService {
 
     private resourceUrl = SERVER_API_URL + 'api/item-attributes';
+    private listResourceUrl = SERVER_API_URL + 'api/item-attributes/item';
 
     constructor(private http: Http) { }
 
@@ -39,6 +40,12 @@ export class ItemAttributeService {
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
+    list(id: number, req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
+        return this.http.get(`${this.listResourceUrl}/${id}`, options)
             .map((res: Response) => this.convertResponse(res));
     }
 

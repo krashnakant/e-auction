@@ -16,7 +16,8 @@ export class LoginModalService {
         }
         this.isOpen = true;
         const modalRef = this.modalService.open(AppLoginModalComponent, {
-            container: 'nav'
+            container: 'nav',
+            size: 'lg'
         });
         modalRef.result.then((result) => {
             this.isOpen = false;

@@ -68,7 +68,7 @@ class ItemGatlingTest extends Simulation {
             .exec(http("Create new item")
             .post("/api/items")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "itemTitle":"SAMPLE_TEXT", "itemDescription":null, "itemImage":null, "basePrice":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "itemTitle":"SAMPLE_TEXT", "itemDescription":"SAMPLE_TEXT", "itemImage":null, "basePrice":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_item_url"))).exitHereIfFailed
             .pause(10)

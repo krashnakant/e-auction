@@ -102,7 +102,14 @@ public class SubCategoryResource {
         SubCategoryDTO subCategoryDTO = subCategoryService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(subCategoryDTO));
     }
-
+    
+    @GetMapping("/sub-categories/count")
+	@Timed
+	public Long getCount() {
+		log.debug("REST request to get count");
+		return subCategoryService.count();
+	}
+    
     /**
      * DELETE  /sub-categories/:id : delete the "id" subCategory.
      *

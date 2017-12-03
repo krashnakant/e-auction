@@ -10,6 +10,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class BidService {
 
     private resourceUrl = SERVER_API_URL + 'api/bids';
+    private bidNowResourceUrl = SERVER_API_URL + 'api/bids/bid-now';
 
     constructor(private http: Http) { }
 
@@ -31,6 +32,13 @@ export class BidService {
 
     find(id: number): Observable<Bid> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
+        });
+    }
+
+    bid(data: any): Observable<Bid> {
+        return this.http.post(this.bidNowResourceUrl, data).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
         });

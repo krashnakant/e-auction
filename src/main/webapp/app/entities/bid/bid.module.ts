@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { EauctionSharedModule } from '../../shared';
+
 import {
     BidService,
     BidPopupService,
@@ -11,9 +12,11 @@ import {
     BidPopupComponent,
     BidDeletePopupComponent,
     BidDeleteDialogComponent,
+    BidNowComponent,
     bidRoute,
     bidPopupRoute,
 } from './';
+import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...bidRoute,
@@ -23,6 +26,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
+        EntitySharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
@@ -32,6 +36,7 @@ const ENTITY_STATES = [
         BidDeleteDialogComponent,
         BidPopupComponent,
         BidDeletePopupComponent,
+        BidNowComponent
     ],
     entryComponents: [
         BidComponent,
@@ -39,11 +44,15 @@ const ENTITY_STATES = [
         BidPopupComponent,
         BidDeleteDialogComponent,
         BidDeletePopupComponent,
+        BidNowComponent
     ],
     providers: [
         BidService,
         BidPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        BidNowComponent
+    ]
 })
 export class EauctionBidModule {}

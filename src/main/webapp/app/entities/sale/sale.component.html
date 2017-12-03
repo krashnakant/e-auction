@@ -1,74 +1,95 @@
-<div>
-    <h2>
-        <span jhiTranslate="eauctionApp.sale.home.title">Sales</span>
-        <button class="btn btn-primary float-right jh-create-entity create-sale" [routerLink]="['/', { outlets: { popup: ['sale-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span  jhiTranslate="eauctionApp.sale.home.createLabel">
-            Create new Sale
-            </span>
-        </button>
-    </h2>
-    <app-alert></app-alert>
-    <div class="row">
-    </div>
-    <br/>
-    <div class="table-responsive" *ngIf="sales">
-        <table class="table table-striped">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="auctionTitle"><span jhiTranslate="eauctionApp.sale.auctionTitle">Auction Title</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="start"><span jhiTranslate="eauctionApp.sale.start">Start</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="end"><span jhiTranslate="eauctionApp.sale.end">End</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="categoryId"><span jhiTranslate="eauctionApp.sale.category">Category</span> <span class="fa fa-sort"></span></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let sale of sales ;trackBy: trackId">
-                <td><a [routerLink]="['../sale', sale.id ]">{{sale.id}}</a></td>
-                <td>{{sale.auctionTitle}}</td>
-                <td>{{sale.start | date:'medium'}}</td>
-                <td>{{sale.end | date:'medium'}}</td>
-                <td>
-                    <div *ngIf="sale.categoryId">
-                        <a [routerLink]="['../category', sale.categoryId  ]" >{{sale.categoryId}}</a>
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card jh-card">
+                <div class="card-header bg-transparent">
+                    <h2 class="d-inline-block">
+                        <span jhiTranslate="eauctionApp.sale.home.title">Sales</span>
+                    </h2>
+                    <button class="btn btn-primary float-right" [routerLink]="['/', { outlets: { popup: ['sale-new'] } }]">
+                        <span class="fa fa-plus"></span>
+                        <span jhiTranslate="eauctionApp.sale.home.createLabel">Create new Sale</span>
+                    </button>
+                    <app-alert></app-alert>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" *ngIf="sales">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                    <!--<th jhiSortBy="id">
+                                        <span jhiTranslate="global.field.id">ID</span>
+                                        <span class="fa fa-sort"></span>
+                                    </th>-->
+                                    <th jhiSortBy="auctionTitle">
+                                        <span jhiTranslate="eauctionApp.sale.auctionTitle">Auction Title</span>
+                                        <span class="fa fa-sort"></span>
+                                    </th>
+                                    <th jhiSortBy="start">
+                                        <span jhiTranslate="eauctionApp.sale.start">Start</span>
+                                        <span class="fa fa-sort"></span>
+                                    </th>
+                                    <th jhiSortBy="end">
+                                        <span jhiTranslate="eauctionApp.sale.end">End</span>
+                                        <span class="fa fa-sort"></span>
+                                    </th>
+                                    <th jhiSortBy="categoryId">
+                                        <span jhiTranslate="eauctionApp.sale.category">Category</span>
+                                        <span class="fa fa-sort"></span>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let sale of sales ;trackBy: trackId">
+                                    <!--<td>
+                                        <a [routerLink]="['../sale', sale.id ]">{{sale.id}}</a>
+                                    </td>-->
+                                    <td>
+                                        <a [routerLink]="['../sale', sale.id ]">{{sale.auctionTitle}}</a>
+                                    </td>
+                                    <td>{{sale.start | date:'medium'}}</td>
+                                    <td>{{sale.end | date:'medium'}}</td>
+                                    <td>
+                                        <div *ngIf="sale.categoryId">
+                                            <a [routerLink]="['../category', sale.categoryId  ]" href="#">
+                                                <app-category-label [id]="sale.categoryId"></app-category-label></a>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <button type="submit" [routerLink]="['../sale', sale.id ]" class="btn btn-info btn-sm">
+                                                <span class="fa fa-eye"></span>
+                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                            </button>
+                                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'sale/'+ sale.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
+                                                <span class="fa fa-pencil"></span>
+                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                            </button>
+                                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'sale/'+ sale.id + '/delete'} }]" replaceUrl="true" class="btn btn-danger btn-sm">
+                                                <span class="fa fa-remove"></span>
+                                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../sale', sale.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'sale/'+ sale.id + '/edit'} }]"
-                                replaceUrl="true"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'sale/'+ sale.id + '/delete'} }]"
-                                replaceUrl="true"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div *ngIf="sales && sales.length">
+                        <div class="row justify-content-end">
+                            <div class="d-inline-block">
+                                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                            </div>
+                            <div class="d-inline-block ml-2">
+                                <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)" size="sm"></ngb-pagination>
+                            </div>
+                        </div>
                     </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-        <div *ngIf="sales && sales.length">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-            </div>
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+                </div>
             </div>
         </div>
+    </div>
 </div>

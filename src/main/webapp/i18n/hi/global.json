@@ -4,6 +4,7 @@
         "browsehappy": "आप एक <strong>पुराने</strong> ब्राउज़र का उपयोग कर रहे हैं। कृपया अपने अनुभव में सुधार करने के लिए अपने <a href=\"http://browsehappy.com/?locale=en\">ब्राउज़र को अपग्रेड करें</a>",
         "menu": {
             "home": "होम",
+            "dashboard": "डैशबोर्ड",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "एंटिटीज़",
@@ -54,9 +55,9 @@
         "messages": {
             "info": {
                 "authenticated": {
-                    "prefix": "आप ",
+                    "prefix": "क्या आप एक पंजीकृत हैं? ",
                     "link": "साइन इन",
-                    "suffix": " करने के लिए चाहते हैं, तो आप डिफ़ॉल्ट खातों का प्रयास कर सकते हैं <br/>- व्यवस्थापक (लॉगिन = \"admin\" और पासवर्ड = \"admin\") <br/>- उपयोगकर्ता(लॉगिन \"user\" और पासवर्ड= \"user\")"
+                    "suffix": " आपके क्रेडेंशियल के साथ"
                 },
                 "register": {
                     "noaccount": "आपका खाता मौजूद नहीं है?",
@@ -136,5 +137,12 @@
         "emailexists": "ई-मेल पहले से ही उपयोग में है!",
         "idexists": "एक नई एंटिटी {{ entityName }} पहले से ही एक ID है नहीं कर सकता"
     },
-    "footer": "यह आपके पाद लेख है"
+    "footer": {
+        "copyright": "कॉपीराइट &copy; ई-नीलामी 2017",
+        "location": "स्थान",
+        "address": "Ground, 1st and 2nd Floor, Hinjewadi IT Park, Plot No.41, Rajiv Gandhi Infotech Park, MIDC Phase I, Hinjewadi, <br>Pune, Maharashtra 411057",
+        "about": "के बारे में",
+        "aboutUs": "एक नीलामी उन वस्तुओं या सेवाओं को खरीदने और बेचने की प्रक्रिया है जो उन्हें बोली, बोली लेने, और फिर सबसे ज्यादा बोली लगाने वाले को आइटम बेचने के लिए पेशकश कर देती है। खुले आरोही मूल्य नीलामी का तर्क है कि उपयोग में नीलामी का सबसे आम प्रकार आज उपयोग में है",
+        "onWeb": "वेब के आसपास"
+    }
 }

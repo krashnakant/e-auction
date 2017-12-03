@@ -30,11 +30,12 @@ public class Category implements Serializable {
     @Column(name = "category_name", nullable = false)
     private String categoryName;
 
+    @NotNull
     @Lob
-    @Column(name = "category_image")
+    @Column(name = "category_image", nullable = false)
     private byte[] categoryImage;
 
-    @Column(name = "category_image_content_type")
+    @Column(name = "category_image_content_type", nullable = false)
     private String categoryImageContentType;
 
     @OneToMany(mappedBy = "category")

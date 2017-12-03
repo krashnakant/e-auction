@@ -37,4 +37,6 @@ public interface SubCategoryService {
      * @param id the id of the entity
      */
     void delete(Long id);
+    
+    Long count();
 }

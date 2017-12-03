@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { EauctionSharedModule } from '../../shared';
+
 import {
     ItemAttributeService,
     ItemAttributePopupService,
@@ -11,9 +12,11 @@ import {
     ItemAttributePopupComponent,
     ItemAttributeDeletePopupComponent,
     ItemAttributeDeleteDialogComponent,
+    ItemAttributeListComponent,
     itemAttributeRoute,
     itemAttributePopupRoute,
 } from './';
+import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...itemAttributeRoute,
@@ -23,6 +26,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
+        EntitySharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
@@ -32,6 +36,7 @@ const ENTITY_STATES = [
         ItemAttributeDeleteDialogComponent,
         ItemAttributePopupComponent,
         ItemAttributeDeletePopupComponent,
+        ItemAttributeListComponent
     ],
     entryComponents: [
         ItemAttributeComponent,
@@ -39,11 +44,15 @@ const ENTITY_STATES = [
         ItemAttributePopupComponent,
         ItemAttributeDeleteDialogComponent,
         ItemAttributeDeletePopupComponent,
+        ItemAttributeListComponent
     ],
     providers: [
         ItemAttributeService,
         ItemAttributePopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        ItemAttributeListComponent
+    ]
 })
 export class EauctionItemAttributeModule {}

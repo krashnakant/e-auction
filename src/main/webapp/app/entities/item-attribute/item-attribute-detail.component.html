@@ -1,37 +1,34 @@
-
-<div *ngIf="itemAttribute">
-    <h2><span jhiTranslate="eauctionApp.itemAttribute.detail.title">Item Attribute</span> {{itemAttribute.id}}</h2>
-    <hr>
-    <app-alert-error></app-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eauctionApp.itemAttribute.value">Value</span></dt>
-        <dd>
-            <span>{{itemAttribute.value}}</span>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.itemAttribute.attribute">Attribute</span></dt>
-        <dd>
-            <div *ngIf="itemAttribute.attributeId">
-                <a [routerLink]="['/attribute', itemAttribute.attributeId]">{{itemAttribute.attributeId}}</a>
+<div class="container" *ngIf="itemAttribute">
+    <section class="row mt-4 mb-4 justify-content-md-center">
+        <app-alert-error></app-alert-error>
+        <div class="card jh-card col-md-6">
+            <div class="card-body">
+                <h3 class="card-title">{{itemAttribute.value}}</h3>
+                <small>
+                    <span jhiTranslate="eauctionApp.itemAttribute.attribute">Attribute</span>
+                    <div *ngIf="itemAttribute.attributeId">
+                        <a [routerLink]="['/attribute', itemAttribute.attributeId]">{{itemAttribute.attributeId}}</a>
+                    </div>
+                </small>
+                <small>
+                    <span jhiTranslate="eauctionApp.itemAttribute.item">Item</span>
+                    <div *ngIf="itemAttribute.itemId">
+                        <a [routerLink]="['/item', itemAttribute.itemId]">{{itemAttribute.itemId}}</a>
+                    </div>
+                </small>
             </div>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.itemAttribute.item">Item</span></dt>
-        <dd>
-            <div *ngIf="itemAttribute.itemId">
-                <a [routerLink]="['/item', itemAttribute.itemId]">{{itemAttribute.itemId}}</a>
+            <div class="card-footer bg-transparent">
+                <button type="submit" (click)="previousState()" class="btn btn-info">
+                    <span class="fa fa-arrow-left"></span>&nbsp;
+                    <span jhiTranslate="entity.action.back"> Back</span>
+                </button>
+
+                <button type="button" [routerLink]="['/', { outlets: { popup: 'item-attribute/'+ itemAttribute.id + '/edit'} }]" replaceUrl="true"
+                    class="btn btn-primary">
+                    <span class="fa fa-pencil"></span>&nbsp;
+                    <span jhiTranslate="entity.action.edit"> Edit</span>
+                </button>
             </div>
-        </dd>
-    </dl>
-
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
-
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'item-attribute/'+ itemAttribute.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+        </div>
+    </section>
 </div>

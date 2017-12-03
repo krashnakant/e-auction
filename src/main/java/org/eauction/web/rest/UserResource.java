@@ -187,4 +187,20 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
     }
+    
+    @GetMapping("/users/id/{id}")
+    @Timed
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        log.debug("REST request to get User : {}", id);
+        return ResponseUtil.wrapOrNotFound(
+            userService.getUserWithAuthorities(id)
+                .map(UserDTO::new));
+    }
+    
+    @GetMapping("/users/count")
+	@Timed
+	public Long getCount() {
+		log.debug("REST request to get count");
+		return userService.count();
+	}
 }

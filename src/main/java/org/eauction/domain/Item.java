@@ -32,18 +32,15 @@ public class Item implements Serializable {
     private String itemTitle;
 
     @NotNull
-    @Lob
     @Column(name = "item_description", nullable = false)
-    private byte[] itemDescription;
+    private String itemDescription;
 
-    @Column(name = "item_description_content_type", nullable = false)
-    private String itemDescriptionContentType;
-
+    @NotNull
     @Lob
-    @Column(name = "item_image")
+    @Column(name = "item_image", nullable = false)
     private byte[] itemImage;
 
-    @Column(name = "item_image_content_type")
+    @Column(name = "item_image_content_type", nullable = false)
     private String itemImageContentType;
 
     @NotNull
@@ -55,6 +52,12 @@ public class Item implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemAttribute> itemAttributes = new HashSet<>();
+
+    @ManyToOne
+    private SubCategory subCategory;
+
+    @ManyToOne
+    private UserAccount account;
 
     @ManyToOne
     private Sale sale;
@@ -81,30 +84,17 @@ public class Item implements Serializable {
         this.itemTitle = itemTitle;
     }
 
-    public byte[] getItemDescription() {
+    public String getItemDescription() {
         return itemDescription;
     }
 
-    public Item itemDescription(byte[] itemDescription) {
+    public Item itemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
         return this;
     }
 
-    public void setItemDescription(byte[] itemDescription) {
+    public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
-    }
-
-    public String getItemDescriptionContentType() {
-        return itemDescriptionContentType;
-    }
-
-    public Item itemDescriptionContentType(String itemDescriptionContentType) {
-        this.itemDescriptionContentType = itemDescriptionContentType;
-        return this;
-    }
-
-    public void setItemDescriptionContentType(String itemDescriptionContentType) {
-        this.itemDescriptionContentType = itemDescriptionContentType;
     }
 
     public byte[] getItemImage() {
@@ -171,6 +161,32 @@ public class Item implements Serializable {
         this.itemAttributes = itemAttributes;
     }
 
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
+
+    public Item subCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+        return this;
+    }
+
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    public UserAccount getAccount() {
+        return account;
+    }
+
+    public Item account(UserAccount userAccount) {
+        this.account = userAccount;
+        return this;
+    }
+
+    public void setAccount(UserAccount userAccount) {
+        this.account = userAccount;
+    }
+
     public Sale getSale() {
         return sale;
     }
@@ -211,7 +227,6 @@ public class Item implements Serializable {
             "id=" + getId() +
             ", itemTitle='" + getItemTitle() + "'" +
             ", itemDescription='" + getItemDescription() + "'" +
-            ", itemDescriptionContentType='" + getItemDescriptionContentType() + "'" +
             ", itemImage='" + getItemImage() + "'" +
             ", itemImageContentType='" + getItemImageContentType() + "'" +
             ", basePrice=" + getBasePrice() +

@@ -1,6 +1,6 @@
 entity Category {
 	categoryName String required,
-    categoryImage ImageBlob
+    categoryImage ImageBlob required
 }
 
 entity SubCategory {
@@ -8,13 +8,13 @@ entity SubCategory {
 }
 
 entity Attribute {
-	attributeName String
+	attributeName String required
 }
 
 entity Item {
 	itemTitle String required,
-	itemDescription Blob required,
-    itemImage ImageBlob,
+	itemDescription String required,
+    itemImage ImageBlob required,
     basePrice BigDecimal required min(1)
 }
 
@@ -52,10 +52,12 @@ relationship OneToMany {
 }
 
 relationship ManyToOne {
+	Item{subCategory} to SubCategory,
     ItemAttribute{attribute} to Attribute,
     Sale{category} to Category,
     Bid{item} to Item,
-    Bid{account} to UserAccount
+    Bid{account} to UserAccount,
+    Item{account} to UserAccount
 }
 
 relationship ManyToMany {

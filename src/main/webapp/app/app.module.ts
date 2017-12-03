@@ -7,6 +7,7 @@ import { Ng2Webstorage } from 'ng2-webstorage';
 import { EauctionSharedModule, UserRouteAccessService } from './shared';
 import { EauctionAppRoutingModule} from './app-routing.module';
 import { EauctionHomeModule } from './home/home.module';
+import { EauctionDashboardModule } from './dashboard/dashboard.module';
 import { EauctionAdminModule } from './admin/admin.module';
 import { EauctionAccountModule } from './account/account.module';
 import { EauctionEntityModule } from './entities/entity.module';
@@ -32,6 +33,7 @@ import {
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         EauctionSharedModule,
         EauctionHomeModule,
+        EauctionDashboardModule,
         EauctionAdminModule,
         EauctionAccountModule,
         EauctionEntityModule,

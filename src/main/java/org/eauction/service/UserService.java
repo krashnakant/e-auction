@@ -238,7 +238,13 @@ public class UserService {
     public Optional<User> getUserWithAuthorities() {
         return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin);
     }
-
+    
+    @Transactional(readOnly = true)
+	public Long count() {
+		// TODO Auto-generated method stub
+		return userRepository.count();
+	}
+    
     /**
      * Not activated users should be automatically deleted after 3 days.
      * <p>

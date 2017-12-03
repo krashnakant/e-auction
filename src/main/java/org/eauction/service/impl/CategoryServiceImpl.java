@@ -84,4 +84,11 @@ public class CategoryServiceImpl implements CategoryService{
         log.debug("Request to delete Category : {}", id);
         categoryRepository.delete(id);
     }
+    
+    @Override
+	@Transactional(readOnly = true)
+	public Long count() {
+		// TODO Auto-generated method stub
+		return categoryRepository.count();
+	}
 }

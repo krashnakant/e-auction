@@ -5,4 +5,6 @@ export * from './item-dialog.component';
 export * from './item-delete-dialog.component';
 export * from './item-detail.component';
 export * from './item.component';
+export * from './item-card/item-card.component';
+export * from './item-label/item-label.component';
 export * from './item.route';

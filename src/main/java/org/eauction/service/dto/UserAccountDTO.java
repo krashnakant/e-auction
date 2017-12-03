@@ -2,8 +2,9 @@ package org.eauction.service.dto;
 
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
-
 import org.eauction.domain.enumeration.UserAccountType;
 
 /**
@@ -11,12 +12,7 @@ import org.eauction.domain.enumeration.UserAccountType;
  */
 public class UserAccountDTO implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 2959365342930256805L;
-
-	private Long id;
+    private Long id;
 
     private UserAccountType accountType;
 

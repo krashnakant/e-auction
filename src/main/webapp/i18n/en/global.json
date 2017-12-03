@@ -4,6 +4,7 @@
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
+            "dashboard": "Dashboard",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
@@ -54,13 +55,13 @@
         "messages": {
             "info": {
                 "authenticated": {
-                    "prefix": "If you want to ",
-                    "link": "sign in",
-                    "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
+                    "prefix": "Are you a registered ? ",
+                    "link": "Sign in",
+                    "suffix": ",  with your credentials."
                 },
                 "register": {
-                    "noaccount": "You don't have an account yet?",
-                    "link": "Register a new account"
+                    "noaccount": "You don't have an account yet ?",
+                    "link": "Register now."
                 }
             },
             "error": {
@@ -136,5 +137,12 @@
         "emailexists": "Email is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": {
+        "copyright": "Copyright &copy; e-Auction 2017",
+        "location": "Location",
+        "address": "Ground, 1st and 2nd Floor, Hinjewadi IT Park, Plot No.41, Rajiv Gandhi Infotech Park, MIDC Phase I, Hinjewadi, <br>Pune, Maharashtra 411057",
+        "about": "About",
+        "aboutUs": "An auction is a process of buying and selling goods or services by offering them up for bid, taking bids, and then selling the item to the highest bidder. The open ascending price auction is arguably the most common form of auction in use today.",
+        "onWeb": "Around the Web"
+    }
 }

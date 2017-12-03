@@ -11,7 +11,10 @@
     "fields": [
         {
             "fieldName": "attributeName",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20171201123703",

@@ -1,7 +1,10 @@
 package org.eauction.service.dto;
 
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -9,13 +12,9 @@ import java.util.Objects;
  */
 public class AttributeDTO implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6387932447283416858L;
+    private Long id;
 
-	private Long id;
-
+    @NotNull
     private String attributeName;
 
     private Long subCategoryId;

@@ -1,0 +1,47 @@
+<app-alert></app-alert>
+<section class="row mt-4 mb-4 no-gutters" infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']"
+    [infiniteScrollDistance]="0" *ngIf="items?.length > 0">
+    <div class="col-md-6" *ngFor="let item of items ;trackBy: trackId">
+        <div class="card jh-card m-2">
+            <a *ngIf="item.itemImage" (click)="openFile(item.itemImageContentType, item.itemImage)">
+                <img class="card-img-top" [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" alt="item image">
+            </a>
+            <div class="card-body">
+                <h3 class="card-title">{{item.itemTitle}}</h3>
+                <ngb-tabset>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>
+                            <small>Description</small>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="mt-2 mb-2">
+                                <p class="card-subtitle">{{item.itemDescription}}</p>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>
+                            <small>Properties</small>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="mt-2 mb-2">
+                                <app-item-attribute-list [itemId]="item.id"></app-item-attribute-list>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+            <div class="card-footer bg-transparent">
+                <h4 class="d-inline-block float-left">₹ {{item.basePrice}}</h4>
+                <small class="d-inline-block float-right"><app-user-account-label [id]="item.accountId"></app-user-account-label></small>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="row mt-4 mb-4" *ngIf="items?.length == 0">
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            <strong>No Items Available!</strong>
+        </div>
+    </div>
+</section>

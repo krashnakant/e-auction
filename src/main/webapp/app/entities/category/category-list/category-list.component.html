@@ -1,0 +1,16 @@
+<section class="row mt-4 mb-4" *ngIf="categories?.length > 0">
+    <div class="col-md-3" *ngFor="let category of categories; trackBy: trackId">
+        <div class="card shadow full-screen height-200" [style.background-image]="'url(data:' + category.categoryImageContentType + ';base64,' + category.categoryImage + ')'">
+            <div class="card-body custom-dim">
+                <button [routerLink]="['../sale/category', category.categoryName, category.id ]" class="position-absolute custom-center btn btn-outline-light">{{category.categoryName}}</button>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="row mt-4 mb-4" *ngIf="categories?.length == 0">
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            <strong>No Categories Available!</strong>
+        </div>
+    </div>
+</section>

@@ -1,7 +1,7 @@
 {
     "home": {
-        "title": "Welcome, e-Auction!",
-        "subtitle": "This is your homepage",
+        "title": "Welcome to, e-Auction!",
+        "subtitle": "Selling your antiques made easy.",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },

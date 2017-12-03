@@ -1,5 +1,7 @@
 package org.eauction.service;
 
+import java.util.List;
+
 import org.eauction.service.dto.SaleDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,4 +41,8 @@ public interface SaleService {
      * @param id the id of the entity
      */
     void delete(Long id);
+    
+    List<SaleDTO> findAllByCategory_Id(Long id);
+    
+    Long count();
 }

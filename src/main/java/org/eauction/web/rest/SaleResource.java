@@ -96,7 +96,14 @@ public class SaleResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/sales");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
+    
+    @GetMapping("/sales/category/{id}")
+    @Timed
+    public List<SaleDTO> getSalesByCategory(@PathVariable Long id) {
+        log.debug("REST request to get Category Sales");
+        return saleService.findAllByCategory_Id(id);
+    }
+    
     /**
      * GET  /sales/:id : get the "id" sale.
      *
