@@ -2,10 +2,14 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { EauctionSharedModule } from '../../shared';
+import { EauctionItemModule } from '../item/item.module';
+
 import {
     SaleService,
     SalePopupService,
     SaleComponent,
+    SaleListComponent,
+    SaleLabelComponent,
     SaleDetailComponent,
     SaleDialogComponent,
     SalePopupComponent,
@@ -15,6 +19,7 @@ import {
     salePopupRoute,
     SaleResolvePagingParams,
 } from './';
+import { EauctionCategoryModule } from '../category/category.module';
 
 const ENTITY_STATES = [
     ...saleRoute,
@@ -24,10 +29,14 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
+        EauctionItemModule,
+        EauctionCategoryModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         SaleComponent,
+        SaleListComponent,
+        SaleLabelComponent,
         SaleDetailComponent,
         SaleDialogComponent,
         SaleDeleteDialogComponent,
@@ -36,6 +45,8 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         SaleComponent,
+        SaleListComponent,
+        SaleLabelComponent,
         SaleDialogComponent,
         SalePopupComponent,
         SaleDeleteDialogComponent,
@@ -46,6 +57,9 @@ const ENTITY_STATES = [
         SalePopupService,
         SaleResolvePagingParams,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        SaleLabelComponent
+    ]
 })
 export class EauctionSaleModule {}

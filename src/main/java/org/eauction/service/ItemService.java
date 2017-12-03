@@ -39,4 +39,6 @@ public interface ItemService {
      * @param id the id of the entity
      */
     void delete(Long id);
+    
+    Page<ItemDTO> findAllBySale_Id(Pageable pageable, Long id);
 }

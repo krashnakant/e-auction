@@ -9,6 +9,12 @@
         },
         {
             "relationshipType": "many-to-one",
+            "relationshipName": "subCategory",
+            "otherEntityName": "subCategory",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "relationshipName": "sale",
             "otherEntityName": "sale",
             "otherEntityField": "id"
@@ -24,8 +30,7 @@
         },
         {
             "fieldName": "itemDescription",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "any",
+            "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
@@ -33,7 +38,10 @@
         {
             "fieldName": "itemImage",
             "fieldType": "byte[]",
-            "fieldTypeBlobContent": "image"
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "basePrice",

@@ -1,37 +1,33 @@
-
-<div *ngIf="bid">
-    <h2><span jhiTranslate="eauctionApp.bid.detail.title">Bid</span> {{bid.id}}</h2>
-    <hr>
-    <app-alert-error></app-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eauctionApp.bid.bidPrice">Bid Price</span></dt>
-        <dd>
-            <span>{{bid.bidPrice}}</span>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.bid.item">Item</span></dt>
-        <dd>
-            <div *ngIf="bid.itemId">
-                <a [routerLink]="['/item', bid.itemId]">{{bid.itemId}}</a>
+<div class="container" *ngIf="bid">
+    <section class="row mt-4 mb-4 justify-content-md-center">
+        <app-alert-error></app-alert-error>
+        <div class="card jh-card col-md-6">
+            <div class="card-body">
+                <h3 class="card-title">{{bid.bidPrice}}</h3>
+                <small>
+                    <span jhiTranslate="eauctionApp.bid.item">Item</span>
+                    <div *ngIf="bid.itemId">
+                        <a [routerLink]="['/item', bid.itemId]">{{bid.itemId}}</a>
+                    </div>
+                </small>
+                <small>
+                    <span jhiTranslate="eauctionApp.bid.account">Account</span>
+                    <div *ngIf="bid.accountId">
+                        <a [routerLink]="['/user-account', bid.accountId]">{{bid.accountId}}</a>
+                    </div>
+                </small>
             </div>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.bid.account">Account</span></dt>
-        <dd>
-            <div *ngIf="bid.accountId">
-                <a [routerLink]="['/user-account', bid.accountId]">{{bid.accountId}}</a>
+            <div class="card-footer bg-transparent">
+                <button type="submit" (click)="previousState()" class="btn btn-info btn-sm">
+                    <span class="fa fa-arrow-left"></span>&nbsp;
+                    <span jhiTranslate="entity.action.back"> Back</span>
+                </button>
+
+                <button type="button" [routerLink]="['/', { outlets: { popup: 'bid/'+ bid.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
+                    <span class="fa fa-pencil"></span>&nbsp;
+                    <span jhiTranslate="entity.action.edit"> Edit</span>
+                </button>
             </div>
-        </dd>
-    </dl>
-
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
-
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'bid/'+ bid.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+        </div>
+    </section>
 </div>

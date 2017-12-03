@@ -1,76 +1,96 @@
-<div>
-    <h2>
-        <span jhiTranslate="eauctionApp.item.home.title">Items</span>
-        <button class="btn btn-primary float-right jh-create-entity create-item" [routerLink]="['/', { outlets: { popup: ['item-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span  jhiTranslate="eauctionApp.item.home.createLabel">
-            Create new Item
-            </span>
-        </button>
-    </h2>
-    <app-alert></app-alert>
-    <div class="row">
-    </div>
-    <br/>
-    <div class="table-responsive" *ngIf="items">
-        <table class="table table-striped">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="itemTitle"><span jhiTranslate="eauctionApp.item.itemTitle">Item Title</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="itemDescription"><span jhiTranslate="eauctionApp.item.itemDescription">Item Description</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="itemImage"><span jhiTranslate="eauctionApp.item.itemImage">Item Image</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="basePrice"><span jhiTranslate="eauctionApp.item.basePrice">Base Price</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="saleId"><span jhiTranslate="eauctionApp.item.sale">Sale</span> <span class="fa fa-sort"></span></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <tr *ngFor="let item of items ;trackBy: trackId">
-                <td><a [routerLink]="['../item', item.id ]">{{item.id}}</a></td>
-                <td>{{item.itemTitle}}</td>
-                <td>
-                    <a *ngIf="item.itemDescription" (click)="openFile(item.itemDescriptionContentType, item.itemDescription)" jhiTranslate="entity.action.open">open</a>
-                    <span *ngIf="item.itemDescription">{{item.itemDescriptionContentType}}, {{byteSize(item.itemDescription)}}</span>
-                </td>
-                <td>
-                    <a *ngIf="item.itemImage" (click)="openFile(item.itemImageContentType, item.itemImage)">
-                        <img [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" style="max-height: 30px;" alt="item image"/>
-                    </a>
-                    <span *ngIf="item.itemImage">{{item.itemImageContentType}}, {{byteSize(item.itemImage)}}</span>
-                </td>
-                <td>{{item.basePrice}}</td>
-                <td>
-                    <div *ngIf="item.saleId">
-                        <a [routerLink]="['../sale', item.saleId  ]" >{{item.saleId}}</a>
-                    </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../item', item.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/edit'} }]"
-                                replaceUrl="true"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/delete'} }]"
-                                replaceUrl="true"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="container">
+    <section class="row mt-4 mb-4">
+        <div class="col-md-12 card jh-card">
+            <div class="card-header bg-transparent">
+                <h2>
+                    <span jhiTranslate="eauctionApp.item.home.title">Items</span>
+                </h2>
+                <app-alert></app-alert>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive" *ngIf="items">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                                <!-- <th jhiSortBy="id">
+                                    <span jhiTranslate="global.field.id">ID</span>
+                                    <span class="fa fa-sort"></span>
+                                </th> -->
+                                <th jhiSortBy="itemImage">
+                                    <span jhiTranslate="eauctionApp.item.itemImage">Item Image</span>
+                                    <span class="fa fa-sort"></span>
+                                </th>
+                                <th jhiSortBy="itemTitle">
+                                    <span jhiTranslate="eauctionApp.item.itemTitle">Item Title</span>
+                                    <span class="fa fa-sort"></span>
+                                </th>
+                                <!--<th jhiSortBy="itemDescription">
+                                    <span jhiTranslate="eauctionApp.item.itemDescription">Item Description</span>
+                                    <span class="fa fa-sort"></span>
+                                </th>-->
+                                <th jhiSortBy="basePrice">
+                                    <span jhiTranslate="eauctionApp.item.basePrice">Base Price</span>
+                                    <span class="fa fa-sort"></span>
+                                </th>
+                                <!--<th jhiSortBy="subCategoryId">
+                                    <span jhiTranslate="eauctionApp.item.subCategory">Sub Category</span>
+                                    <span class="fa fa-sort"></span>
+                                </th>
+                                <th jhiSortBy="saleId">
+                                    <span jhiTranslate="eauctionApp.item.sale">Sale</span>
+                                    <span class="fa fa-sort"></span>
+                                </th> -->
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                            <tr *ngFor="let item of items ;trackBy: trackId">
+                                <!--<td>
+                                    <a [routerLink]="['../item', item.id ]">{{item.id}}</a>
+                                </td>-->
+                                <td>
+                                    <a *ngIf="item.itemImage" (click)="openFile(item.itemImageContentType, item.itemImage)">
+                                        <img [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" style="max-height: 50px;" alt="item image"
+                                        />
+                                    </a>
+                                    <!-- <span *ngIf="item.itemImage">{{item.itemImageContentType}}, {{byteSize(item.itemImage)}}</span> -->
+                                </td>
+                                <td>
+                                    <a [routerLink]="['../item', item.id ]">{{item.itemTitle}}</a>
+                                </td>
+                                <!-- <td>{{item.itemDescription}}</td> -->
+                                <td>{{item.basePrice}}</td>
+                                <!-- <td>
+                                    <div *ngIf="item.subCategoryId">
+                                        <a [routerLink]="['../sub-category', item.subCategoryId  ]">{{item.subCategoryId}}</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div *ngIf="item.saleId">
+                                        <a [routerLink]="['../sale', item.saleId  ]">{{item.saleId}}</a>
+                                    </div>
+                                </td> -->
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                        <button type="submit" [routerLink]="['../item', item.id ]" class="btn btn-info btn-sm">
+                                            <span class="fa fa-eye"></span>
+                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                        </button>
+                                        <button type="submit" [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
+                                            <span class="fa fa-pencil"></span>
+                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                        </button>
+                                        <button type="submit" [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/delete'} }]" replaceUrl="true" class="btn btn-danger btn-sm">
+                                            <span class="fa fa-remove"></span>
+                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

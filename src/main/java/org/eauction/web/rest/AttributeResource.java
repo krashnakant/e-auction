@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -49,7 +50,7 @@ public class AttributeResource {
      */
     @PostMapping("/attributes")
     @Timed
-    public ResponseEntity<AttributeDTO> createAttribute(@RequestBody AttributeDTO attributeDTO) throws URISyntaxException {
+    public ResponseEntity<AttributeDTO> createAttribute(@Valid @RequestBody AttributeDTO attributeDTO) throws URISyntaxException {
         log.debug("REST request to save Attribute : {}", attributeDTO);
         if (attributeDTO.getId() != null) {
             throw new BadRequestAlertException("A new attribute cannot already have an ID", ENTITY_NAME, "idexists");
@@ -73,7 +74,7 @@ public class AttributeResource {
      */
     @PutMapping("/attributes")
     @Timed
-    public ResponseEntity<AttributeDTO> updateAttribute(@RequestBody AttributeDTO attributeDTO) throws URISyntaxException {
+    public ResponseEntity<AttributeDTO> updateAttribute(@Valid @RequestBody AttributeDTO attributeDTO) throws URISyntaxException {
         log.debug("REST request to update Attribute : {}", attributeDTO);
         if (attributeDTO.getId() == null) {
             return createAttribute(attributeDTO);

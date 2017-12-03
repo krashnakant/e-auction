@@ -96,6 +96,15 @@ public class ItemResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/items");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    
+    @GetMapping("/items/sale/{id}")
+    @Timed
+    public ResponseEntity<List<ItemDTO>> getAllItemsBySale(Pageable pageable, @PathVariable Long id) {
+        log.debug("REST request to get a page of Items by Sale");
+        Page<ItemDTO> page = itemService.findAllBySale_Id(pageable, id);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/items");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /items/:id : get the "id" item.

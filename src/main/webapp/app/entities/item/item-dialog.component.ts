@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Item } from './item.model';
 import { ItemPopupService } from './item-popup.service';
 import { ItemService } from './item.service';
+import { SubCategory, SubCategoryService } from '../sub-category';
 import { Sale, SaleService } from '../sale';
 import { ResponseWrapper } from '../../shared';
 
@@ -21,6 +22,8 @@ export class ItemDialogComponent implements OnInit {
     item: Item;
     isSaving: boolean;
 
+    subcategories: SubCategory[];
+
     sales: Sale[];
 
     constructor(
@@ -28,6 +31,7 @@ export class ItemDialogComponent implements OnInit {
         private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
         private itemService: ItemService,
+        private subCategoryService: SubCategoryService,
         private saleService: SaleService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
@@ -36,6 +40,8 @@ export class ItemDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.subCategoryService.query()
+            .subscribe((res: ResponseWrapper) => { this.subcategories = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.saleService.query()
             .subscribe((res: ResponseWrapper) => { this.sales = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -88,6 +94,10 @@ export class ItemDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackSubCategoryById(index: number, item: SubCategory) {
+        return item.id;
     }
 
     trackSaleById(index: number, item: Sale) {

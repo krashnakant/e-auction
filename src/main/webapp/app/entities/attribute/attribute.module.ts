@@ -6,6 +6,7 @@ import {
     AttributeService,
     AttributePopupService,
     AttributeComponent,
+    AttributeLabelComponent,
     AttributeDetailComponent,
     AttributeDialogComponent,
     AttributePopupComponent,
@@ -14,6 +15,7 @@ import {
     attributeRoute,
     attributePopupRoute,
 } from './';
+import { EauctionSubCategoryModule } from '../sub-category/sub-category.module';
 
 const ENTITY_STATES = [
     ...attributeRoute,
@@ -23,10 +25,12 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
+        EauctionSubCategoryModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         AttributeComponent,
+        AttributeLabelComponent,
         AttributeDetailComponent,
         AttributeDialogComponent,
         AttributeDeleteDialogComponent,
@@ -35,6 +39,7 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         AttributeComponent,
+        AttributeLabelComponent,
         AttributeDialogComponent,
         AttributePopupComponent,
         AttributeDeleteDialogComponent,
@@ -44,6 +49,9 @@ const ENTITY_STATES = [
         AttributeService,
         AttributePopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        AttributeLabelComponent
+    ]
 })
 export class EauctionAttributeModule {}

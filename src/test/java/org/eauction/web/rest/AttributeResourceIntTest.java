@@ -134,6 +134,25 @@ public class AttributeResourceIntTest {
 
     @Test
     @Transactional
+    public void checkAttributeNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = attributeRepository.findAll().size();
+        // set the field null
+        attribute.setAttributeName(null);
+
+        // Create the Attribute, which fails.
+        AttributeDTO attributeDTO = attributeMapper.toDto(attribute);
+
+        restAttributeMockMvc.perform(post("/api/attributes")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(attributeDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Attribute> attributeList = attributeRepository.findAll();
+        assertThat(attributeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllAttributes() throws Exception {
         // Initialize the database
         attributeRepository.saveAndFlush(attribute);

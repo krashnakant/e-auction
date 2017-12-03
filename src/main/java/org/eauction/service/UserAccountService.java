@@ -1,7 +1,9 @@
 package org.eauction.service;
 
+import org.eauction.domain.UserAccount;
 import org.eauction.service.dto.UserAccountDTO;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service Interface for managing UserAccount.
@@ -37,4 +39,6 @@ public interface UserAccountService {
      * @param id the id of the entity
      */
     void delete(Long id);
+    
+    Optional<UserAccount> findOneByUser(String login);
 }

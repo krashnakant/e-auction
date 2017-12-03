@@ -65,7 +65,7 @@ export class BidDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Bid) {
-        this.eventManager.broadcast({ name: 'bidListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'bidListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -98,11 +98,11 @@ export class BidPopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private bidPopupService: BidPopupService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.bidPopupService
                     .open(BidDialogComponent as Component, params['id']);
             } else {

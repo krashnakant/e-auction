@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -84,4 +85,11 @@ public class UserAccountServiceImpl implements UserAccountService{
         log.debug("Request to delete UserAccount : {}", id);
         userAccountRepository.delete(id);
     }
+
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<UserAccount> findOneByUser(String login) {
+		// TODO Auto-generated method stub
+		return userAccountRepository.findOneByUser_Login(login);
+	}
 }

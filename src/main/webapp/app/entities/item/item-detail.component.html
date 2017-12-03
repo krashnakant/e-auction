@@ -1,51 +1,45 @@
-
-<div *ngIf="item">
-    <h2><span jhiTranslate="eauctionApp.item.detail.title">Item</span> {{item.id}}</h2>
-    <hr>
-    <app-alert-error></app-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eauctionApp.item.itemTitle">Item Title</span></dt>
-        <dd>
-            <span>{{item.itemTitle}}</span>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.item.itemDescription">Item Description</span></dt>
-        <dd>
-            <div *ngIf="item.itemDescription">
-                <a (click)="openFile(item.itemDescriptionContentType, item.itemDescription)" jhiTranslate="entity.action.open">open</a>
-                {{item.itemDescriptionContentType}}, {{byteSize(item.itemDescription)}}
+<div class="container" *ngIf="item">
+    <section class="row mt-4 mb-4 justify-content-md-center">
+        <div class="card jh-card col-md-6">
+            <a *ngIf="item.itemImage" (click)="openFile(item.itemImageContentType, item.itemImage)">
+                <img class="card-img-top" [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" alt="item image">
+            </a>
+            <div class="card-body">
+                <h3 class="card-title">{{item.itemTitle}}</h3>
+                <ngb-tabset>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>
+                            <small>Description</small>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="mt-2 mb-2">
+                                <p class="card-subtitle">{{item.itemDescription}}</p>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>
+                            <small>Properties</small>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="mt-2 mb-2">
+                                <app-item-attribute-list [itemId]="item.id"></app-item-attribute-list>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
             </div>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.item.itemImage">Item Image</span></dt>
-        <dd>
-            <div *ngIf="item.itemImage">
-                <a (click)="openFile(item.itemImageContentType, item.itemImage)">
-                    <img [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" style="max-width: 100%;" alt="item image"/>
-                </a>
-                {{item.itemImageContentType}}, {{byteSize(item.itemImage)}}
+            <div class="card-footer bg-transparent">
+                <button type="submit" (click)="previousState()" class="btn btn-info btn-sm">
+                    <span class="fa fa-arrow-left"></span>&nbsp;
+                    <span jhiTranslate="entity.action.back"> Back</span>
+                </button>
+                <button type="button" [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
+                    <span class="fa fa-pencil"></span>&nbsp;
+                    <span jhiTranslate="entity.action.edit"> Edit</span>
+                </button>
+                <h4 class="d-inline-block float-right">₹ {{item.basePrice}}</h4>
             </div>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.item.basePrice">Base Price</span></dt>
-        <dd>
-            <span>{{item.basePrice}}</span>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.item.sale">Sale</span></dt>
-        <dd>
-            <div *ngIf="item.saleId">
-                <a [routerLink]="['/sale', item.saleId]">{{item.saleId}}</a>
-            </div>
-        </dd>
-    </dl>
-
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
-
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+        </div>
+    </section>
 </div>

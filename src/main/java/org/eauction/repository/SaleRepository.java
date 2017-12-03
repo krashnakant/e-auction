@@ -13,10 +13,11 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface SaleRepository extends JpaRepository<Sale, Long> {
-    @Query("select distinct sale from Sale sale left join fetch sale.accounts")
-    List<Sale> findAllWithEagerRelationships();
+	@Query("select distinct sale from Sale sale left join fetch sale.accounts")
+	List<Sale> findAllWithEagerRelationships();
 
-    @Query("select sale from Sale sale left join fetch sale.accounts where sale.id =:id")
-    Sale findOneWithEagerRelationships(@Param("id") Long id);
-
+	@Query("select sale from Sale sale left join fetch sale.accounts where sale.id =:id")
+	Sale findOneWithEagerRelationships(@Param("id") Long id);
+	
+	List<Sale> findAllByCategory_Id(Long id);
 }

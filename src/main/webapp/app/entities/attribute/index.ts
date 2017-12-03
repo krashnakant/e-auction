@@ -5,4 +5,5 @@ export * from './attribute-dialog.component';
 export * from './attribute-delete-dialog.component';
 export * from './attribute-detail.component';
 export * from './attribute.component';
+export * from './attribute-label/attribute-label.component';
 export * from './attribute.route';

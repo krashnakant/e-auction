@@ -12,6 +12,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class SaleService {
 
     private resourceUrl = SERVER_API_URL + 'api/sales';
+    private listResourceUrl = SERVER_API_URL + 'api/sales/category';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
@@ -42,6 +43,12 @@ export class SaleService {
         const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: Response) => this.convertResponse(res));
+    }
+
+    list(id: number): Observable<Sale[]> {
+        return this.http.get(`${this.listResourceUrl}/${id}`).map((res: Response) => {
+            return res.json();
+        });
     }
 
     delete(id: number): Observable<Response> {

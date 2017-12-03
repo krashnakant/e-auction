@@ -5,6 +5,7 @@ import { EauctionSharedModule } from '../../shared';
 import {
     BidService,
     BidPopupService,
+    BidNowComponent,
     BidComponent,
     BidDetailComponent,
     BidDialogComponent,
@@ -27,6 +28,7 @@ const ENTITY_STATES = [
     ],
     declarations: [
         BidComponent,
+        BidNowComponent,
         BidDetailComponent,
         BidDialogComponent,
         BidDeleteDialogComponent,
@@ -35,6 +37,7 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         BidComponent,
+        BidNowComponent,
         BidDialogComponent,
         BidPopupComponent,
         BidDeleteDialogComponent,
@@ -44,6 +47,9 @@ const ENTITY_STATES = [
         BidService,
         BidPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        BidNowComponent
+    ]
 })
 export class EauctionBidModule {}

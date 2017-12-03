@@ -10,6 +10,7 @@ import { createRequestOption } from '../model/request-util';
 @Injectable()
 export class UserService {
     private resourceUrl = SERVER_API_URL + 'api/users';
+    private resourceByIdUrl = SERVER_API_URL + 'api/users/id';
 
     constructor(private http: Http) { }
 
@@ -25,6 +26,10 @@ export class UserService {
 
     find(login: string): Observable<User> {
         return this.http.get(`${this.resourceUrl}/${login}`).map((res: Response) => res.json());
+    }
+
+    findById(id: number): Observable<User> {
+        return this.http.get(`${this.resourceByIdUrl}/${id}`).map((res: Response) => res.json());
     }
 
     query(req?: any): Observable<ResponseWrapper> {

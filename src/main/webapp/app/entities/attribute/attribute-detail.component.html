@@ -1,31 +1,29 @@
-
-<div *ngIf="attribute">
-    <h2><span jhiTranslate="eauctionApp.attribute.detail.title">Attribute</span> {{attribute.id}}</h2>
-    <hr>
-    <app-alert-error></app-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eauctionApp.attribute.attributeName">Attribute Name</span></dt>
-        <dd>
-            <span>{{attribute.attributeName}}</span>
-        </dd>
-        <dt><span jhiTranslate="eauctionApp.attribute.subCategory">Sub Category</span></dt>
-        <dd>
-            <div *ngIf="attribute.subCategoryId">
-                <a [routerLink]="['/sub-category', attribute.subCategoryId]">{{attribute.subCategoryId}}</a>
+<div class="container" *ngIf="attribute">
+    <section class="row mt-4 mb-4 justify-content-md-center">
+        <app-alert-error></app-alert-error>
+        <div class="card jh-card col-md-6">
+            <div class="card-body">
+                <h3 class="card-title">{{attribute.attributeName}}</h3>
+                <small>
+                    <span jhiTranslate="eauctionApp.attribute.subCategory">Sub Category</span>
+                    <div *ngIf="attribute.subCategoryId">
+                        <a [routerLink]="['/sub-category', attribute.subCategoryId]" href="#">
+                            <app-sub-category-label [id]="attribute.subCategoryId"></app-sub-category-label></a>
+                    </div>
+                </small>
             </div>
-        </dd>
-    </dl>
+            <div class="card-footer bg-transparent">
+                <button type="submit" (click)="previousState()" class="btn btn-info btn-sm">
+                    <span class="fa fa-arrow-left"></span>&nbsp;
+                    <span jhiTranslate="entity.action.back"> Back</span>
+                </button>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
-
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'attribute/'+ attribute.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+                <button type="button" [routerLink]="['/', { outlets: { popup: 'attribute/'+ attribute.id + '/edit'} }]" replaceUrl="true"
+                    class="btn btn-primary btn-sm">
+                    <span class="fa fa-pencil"></span>&nbsp;
+                    <span jhiTranslate="entity.action.edit"> Edit</span>
+                </button>
+            </div>
+        </div>
+    </section>
 </div>

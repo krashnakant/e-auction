@@ -8,6 +8,7 @@ import { SaleComponent } from './sale.component';
 import { SaleDetailComponent } from './sale-detail.component';
 import { SalePopupComponent } from './sale-dialog.component';
 import { SaleDeletePopupComponent } from './sale-delete-dialog.component';
+import { SaleListComponent } from './sale-list/sale-list.component';
 
 @Injectable()
 export class SaleResolvePagingParams implements Resolve<any> {
@@ -42,6 +43,14 @@ export const saleRoute: Routes = [
         component: SaleDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
+            pageTitle: 'eauctionApp.sale.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    }, {
+        path: 'sale/category/:cat/:id',
+        component: SaleListComponent,
+        data: {
+            authorities: [],
             pageTitle: 'eauctionApp.sale.home.title'
         },
         canActivate: [UserRouteAccessService]

@@ -46,10 +46,8 @@ public class ItemResourceIntTest {
     private static final String DEFAULT_ITEM_TITLE = "AAAAAAAAAA";
     private static final String UPDATED_ITEM_TITLE = "BBBBBBBBBB";
 
-    private static final byte[] DEFAULT_ITEM_DESCRIPTION = TestUtil.createByteArray(1, "0");
-    private static final byte[] UPDATED_ITEM_DESCRIPTION = TestUtil.createByteArray(2, "1");
-    private static final String DEFAULT_ITEM_DESCRIPTION_CONTENT_TYPE = "image/jpg";
-    private static final String UPDATED_ITEM_DESCRIPTION_CONTENT_TYPE = "image/png";
+    private static final String DEFAULT_ITEM_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_ITEM_DESCRIPTION = "BBBBBBBBBB";
 
     private static final byte[] DEFAULT_ITEM_IMAGE = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_ITEM_IMAGE = TestUtil.createByteArray(2, "1");
@@ -105,7 +103,6 @@ public class ItemResourceIntTest {
         Item item = new Item()
             .itemTitle(DEFAULT_ITEM_TITLE)
             .itemDescription(DEFAULT_ITEM_DESCRIPTION)
-            .itemDescriptionContentType(DEFAULT_ITEM_DESCRIPTION_CONTENT_TYPE)
             .itemImage(DEFAULT_ITEM_IMAGE)
             .itemImageContentType(DEFAULT_ITEM_IMAGE_CONTENT_TYPE)
             .basePrice(DEFAULT_BASE_PRICE);
@@ -135,7 +132,6 @@ public class ItemResourceIntTest {
         Item testItem = itemList.get(itemList.size() - 1);
         assertThat(testItem.getItemTitle()).isEqualTo(DEFAULT_ITEM_TITLE);
         assertThat(testItem.getItemDescription()).isEqualTo(DEFAULT_ITEM_DESCRIPTION);
-        assertThat(testItem.getItemDescriptionContentType()).isEqualTo(DEFAULT_ITEM_DESCRIPTION_CONTENT_TYPE);
         assertThat(testItem.getItemImage()).isEqualTo(DEFAULT_ITEM_IMAGE);
         assertThat(testItem.getItemImageContentType()).isEqualTo(DEFAULT_ITEM_IMAGE_CONTENT_TYPE);
         assertThat(testItem.getBasePrice()).isEqualTo(DEFAULT_BASE_PRICE);
@@ -201,6 +197,25 @@ public class ItemResourceIntTest {
 
     @Test
     @Transactional
+    public void checkItemImageIsRequired() throws Exception {
+        int databaseSizeBeforeTest = itemRepository.findAll().size();
+        // set the field null
+        item.setItemImage(null);
+
+        // Create the Item, which fails.
+        ItemDTO itemDTO = itemMapper.toDto(item);
+
+        restItemMockMvc.perform(post("/api/items")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(itemDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Item> itemList = itemRepository.findAll();
+        assertThat(itemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void checkBasePriceIsRequired() throws Exception {
         int databaseSizeBeforeTest = itemRepository.findAll().size();
         // set the field null
@@ -230,8 +245,7 @@ public class ItemResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(item.getId().intValue())))
             .andExpect(jsonPath("$.[*].itemTitle").value(hasItem(DEFAULT_ITEM_TITLE.toString())))
-            .andExpect(jsonPath("$.[*].itemDescriptionContentType").value(hasItem(DEFAULT_ITEM_DESCRIPTION_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].itemDescription").value(hasItem(Base64Utils.encodeToString(DEFAULT_ITEM_DESCRIPTION))))
+            .andExpect(jsonPath("$.[*].itemDescription").value(hasItem(DEFAULT_ITEM_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].itemImageContentType").value(hasItem(DEFAULT_ITEM_IMAGE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].itemImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_ITEM_IMAGE))))
             .andExpect(jsonPath("$.[*].basePrice").value(hasItem(DEFAULT_BASE_PRICE.intValue())));
@@ -249,8 +263,7 @@ public class ItemResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(item.getId().intValue()))
             .andExpect(jsonPath("$.itemTitle").value(DEFAULT_ITEM_TITLE.toString()))
-            .andExpect(jsonPath("$.itemDescriptionContentType").value(DEFAULT_ITEM_DESCRIPTION_CONTENT_TYPE))
-            .andExpect(jsonPath("$.itemDescription").value(Base64Utils.encodeToString(DEFAULT_ITEM_DESCRIPTION)))
+            .andExpect(jsonPath("$.itemDescription").value(DEFAULT_ITEM_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.itemImageContentType").value(DEFAULT_ITEM_IMAGE_CONTENT_TYPE))
             .andExpect(jsonPath("$.itemImage").value(Base64Utils.encodeToString(DEFAULT_ITEM_IMAGE)))
             .andExpect(jsonPath("$.basePrice").value(DEFAULT_BASE_PRICE.intValue()));
@@ -278,7 +291,6 @@ public class ItemResourceIntTest {
         updatedItem
             .itemTitle(UPDATED_ITEM_TITLE)
             .itemDescription(UPDATED_ITEM_DESCRIPTION)
-            .itemDescriptionContentType(UPDATED_ITEM_DESCRIPTION_CONTENT_TYPE)
             .itemImage(UPDATED_ITEM_IMAGE)
             .itemImageContentType(UPDATED_ITEM_IMAGE_CONTENT_TYPE)
             .basePrice(UPDATED_BASE_PRICE);
@@ -295,7 +307,6 @@ public class ItemResourceIntTest {
         Item testItem = itemList.get(itemList.size() - 1);
         assertThat(testItem.getItemTitle()).isEqualTo(UPDATED_ITEM_TITLE);
         assertThat(testItem.getItemDescription()).isEqualTo(UPDATED_ITEM_DESCRIPTION);
-        assertThat(testItem.getItemDescriptionContentType()).isEqualTo(UPDATED_ITEM_DESCRIPTION_CONTENT_TYPE);
         assertThat(testItem.getItemImage()).isEqualTo(UPDATED_ITEM_IMAGE);
         assertThat(testItem.getItemImageContentType()).isEqualTo(UPDATED_ITEM_IMAGE_CONTENT_TYPE);
         assertThat(testItem.getBasePrice()).isEqualTo(UPDATED_BASE_PRICE);

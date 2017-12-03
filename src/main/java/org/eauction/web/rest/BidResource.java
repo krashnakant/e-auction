@@ -1,12 +1,21 @@
 package org.eauction.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.eauction.domain.UserAccount;
+import org.eauction.security.SecurityUtils;
 import org.eauction.service.BidService;
+import org.eauction.service.UserAccountService;
+import org.eauction.service.dto.BidDTO;
 import org.eauction.web.rest.errors.BadRequestAlertException;
+import org.eauction.web.rest.errors.InternalServerErrorException;
 import org.eauction.web.rest.util.HeaderUtil;
 import org.eauction.web.rest.util.PaginationUtil;
-import org.eauction.service.dto.BidDTO;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,14 +23,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.codahale.metrics.annotation.Timed;
 
-import java.util.List;
-import java.util.Optional;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing Bid.
@@ -35,9 +48,12 @@ public class BidResource {
     private static final String ENTITY_NAME = "bid";
 
     private final BidService bidService;
+    
+    private final UserAccountService userAccountService;
 
-    public BidResource(BidService bidService) {
+    public BidResource(BidService bidService, UserAccountService userAccountService) {
         this.bidService = bidService;
+        this.userAccountService = userAccountService;
     }
 
     /**
@@ -54,6 +70,9 @@ public class BidResource {
         if (bidDTO.getId() != null) {
             throw new BadRequestAlertException("A new bid cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
+        final UserAccount account = userAccountService.findOneByUser(userLogin).orElseThrow(() -> new InternalServerErrorException("Current user account not found"));
+        bidDTO.setAccountId(account.getId());
         BidDTO result = bidService.save(bidDTO);
         return ResponseEntity.created(new URI("/api/bids/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -76,6 +95,9 @@ public class BidResource {
         if (bidDTO.getId() == null) {
             return createBid(bidDTO);
         }
+        final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
+        final UserAccount account = userAccountService.findOneByUser(userLogin).orElseThrow(() -> new InternalServerErrorException("Current user account not found"));
+        bidDTO.setAccountId(account.getId());
         BidDTO result = bidService.save(bidDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, bidDTO.getId().toString()))
@@ -96,7 +118,7 @@ public class BidResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/bids");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
+    
     /**
      * GET  /bids/:id : get the "id" bid.
      *

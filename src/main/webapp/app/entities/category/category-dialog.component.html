@@ -36,9 +36,15 @@
                 <input type="file" id="file_categoryImage" (change)="setFileData($event, category, 'categoryImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
             </div>
             <input type="hidden" class="form-control" name="categoryImage" id="field_categoryImage"
-                [(ngModel)]="category.categoryImage" />
+                [(ngModel)]="category.categoryImage" required/>
             <input type="hidden" class="form-control" name="categoryImageContentType" id="field_categoryImageContentType"
                 [(ngModel)]="category.categoryImageContentType" />
+            <div [hidden]="!(editForm.controls.categoryImage?.dirty && editForm.controls.categoryImage?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.categoryImage?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
         </div>
 
     </div>

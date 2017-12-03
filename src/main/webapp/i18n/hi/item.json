@@ -20,6 +20,7 @@
             "itemImage": "Item Image",
             "basePrice": "Base Price",
             "itemAttributes": "Item Attributes",
+            "subCategory": "Sub Category",
             "sale": "Sale"
         }
     }

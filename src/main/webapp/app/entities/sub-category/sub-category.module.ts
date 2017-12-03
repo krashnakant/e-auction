@@ -6,6 +6,7 @@ import {
     SubCategoryService,
     SubCategoryPopupService,
     SubCategoryComponent,
+    SubCategoryLabelComponent,
     SubCategoryDetailComponent,
     SubCategoryDialogComponent,
     SubCategoryPopupComponent,
@@ -14,6 +15,7 @@ import {
     subCategoryRoute,
     subCategoryPopupRoute,
 } from './';
+import { EauctionCategoryModule } from '../category/category.module';
 
 const ENTITY_STATES = [
     ...subCategoryRoute,
@@ -23,10 +25,12 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
+        EauctionCategoryModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         SubCategoryComponent,
+        SubCategoryLabelComponent,
         SubCategoryDetailComponent,
         SubCategoryDialogComponent,
         SubCategoryDeleteDialogComponent,
@@ -35,6 +39,7 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         SubCategoryComponent,
+        SubCategoryLabelComponent,
         SubCategoryDialogComponent,
         SubCategoryPopupComponent,
         SubCategoryDeleteDialogComponent,
@@ -44,6 +49,9 @@ const ENTITY_STATES = [
         SubCategoryService,
         SubCategoryPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        SubCategoryLabelComponent
+    ]
 })
 export class EauctionSubCategoryModule {}

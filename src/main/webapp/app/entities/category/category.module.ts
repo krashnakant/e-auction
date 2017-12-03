@@ -6,6 +6,8 @@ import {
     CategoryService,
     CategoryPopupService,
     CategoryComponent,
+    CategoryListComponent,
+    CategoryLabelComponent,
     CategoryDetailComponent,
     CategoryDialogComponent,
     CategoryPopupComponent,
@@ -27,6 +29,8 @@ const ENTITY_STATES = [
     ],
     declarations: [
         CategoryComponent,
+        CategoryListComponent,
+        CategoryLabelComponent,
         CategoryDetailComponent,
         CategoryDialogComponent,
         CategoryDeleteDialogComponent,
@@ -35,6 +39,8 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         CategoryComponent,
+        CategoryListComponent,
+        CategoryLabelComponent,
         CategoryDialogComponent,
         CategoryPopupComponent,
         CategoryDeleteDialogComponent,
@@ -44,6 +50,10 @@ const ENTITY_STATES = [
         CategoryService,
         CategoryPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        CategoryListComponent,
+        CategoryLabelComponent
+    ]
 })
 export class EauctionCategoryModule {}

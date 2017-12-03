@@ -8,13 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Item and its DTO ItemDTO.
  */
-@Mapper(componentModel = "spring", uses = {SaleMapper.class})
+@Mapper(componentModel = "spring", uses = {SubCategoryMapper.class, SaleMapper.class})
 public interface ItemMapper extends EntityMapper<ItemDTO, Item> {
 
+    @Mapping(source = "subCategory.id", target = "subCategoryId")
     @Mapping(source = "sale.id", target = "saleId")
     ItemDTO toDto(Item item); 
 
     @Mapping(target = "itemAttributes", ignore = true)
+    @Mapping(source = "subCategoryId", target = "subCategory")
     @Mapping(source = "saleId", target = "sale")
     Item toEntity(ItemDTO itemDTO);
 

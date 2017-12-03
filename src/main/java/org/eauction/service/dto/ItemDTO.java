@@ -1,34 +1,28 @@
 package org.eauction.service.dto;
 
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
-
 import javax.persistence.Lob;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
 
 /**
  * A DTO for the Item entity.
  */
 public class ItemDTO implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -8579554017022910111L;
-
-	private Long id;
+    private Long id;
 
     @NotNull
     private String itemTitle;
 
     @NotNull
-    @Lob
-    private byte[] itemDescription;
-    private String itemDescriptionContentType;
+    private String itemDescription;
 
+    @NotNull
     @Lob
     private byte[] itemImage;
     private String itemImageContentType;
@@ -36,6 +30,8 @@ public class ItemDTO implements Serializable {
     @NotNull
     @DecimalMin(value = "1")
     private BigDecimal basePrice;
+
+    private Long subCategoryId;
 
     private Long saleId;
 
@@ -55,20 +51,12 @@ public class ItemDTO implements Serializable {
         this.itemTitle = itemTitle;
     }
 
-    public byte[] getItemDescription() {
+    public String getItemDescription() {
         return itemDescription;
     }
 
-    public void setItemDescription(byte[] itemDescription) {
+    public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
-    }
-
-    public String getItemDescriptionContentType() {
-        return itemDescriptionContentType;
-    }
-
-    public void setItemDescriptionContentType(String itemDescriptionContentType) {
-        this.itemDescriptionContentType = itemDescriptionContentType;
     }
 
     public byte[] getItemImage() {
@@ -93,6 +81,14 @@ public class ItemDTO implements Serializable {
 
     public void setBasePrice(BigDecimal basePrice) {
         this.basePrice = basePrice;
+    }
+
+    public Long getSubCategoryId() {
+        return subCategoryId;
+    }
+
+    public void setSubCategoryId(Long subCategoryId) {
+        this.subCategoryId = subCategoryId;
     }
 
     public Long getSaleId() {

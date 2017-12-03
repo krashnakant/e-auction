@@ -7,6 +7,7 @@ import {
     UserAccountService,
     UserAccountPopupService,
     UserAccountComponent,
+    UserAccountLabelComponent,
     UserAccountDetailComponent,
     UserAccountDialogComponent,
     UserAccountPopupComponent,
@@ -29,6 +30,7 @@ const ENTITY_STATES = [
     ],
     declarations: [
         UserAccountComponent,
+        UserAccountLabelComponent,
         UserAccountDetailComponent,
         UserAccountDialogComponent,
         UserAccountDeleteDialogComponent,
@@ -37,6 +39,7 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         UserAccountComponent,
+        UserAccountLabelComponent,
         UserAccountDialogComponent,
         UserAccountPopupComponent,
         UserAccountDeleteDialogComponent,
@@ -46,6 +49,9 @@ const ENTITY_STATES = [
         UserAccountService,
         UserAccountPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [
+        UserAccountLabelComponent
+    ]
 })
 export class EauctionUserAccountModule {}

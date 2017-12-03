@@ -1,25 +1,19 @@
 package org.eauction.service.dto;
 
 
-import java.io.Serializable;
 import java.time.ZonedDateTime;
+import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-
-import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * A DTO for the Sale entity.
  */
 public class SaleDTO implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -8351100225044442513L;
-
-	private Long id;
+    private Long id;
 
     @NotNull
     private String auctionTitle;
@@ -31,7 +25,7 @@ public class SaleDTO implements Serializable {
     private ZonedDateTime end;
 
     private Long categoryId;
-
+    
     private Set<UserAccountDTO> accounts = new HashSet<>();
 
     public Long getId() {

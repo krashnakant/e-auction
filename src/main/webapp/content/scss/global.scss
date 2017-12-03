@@ -8,16 +8,6 @@ body, h1, h2, h3, h4 {
     font-weight: 300;
 }
 
-a {
-    color: #533f03;
-    font-weight: bold;
-}
-
-a:hover {
-    color: #533f03;
-    font-weight: bold;
-}
-
 /* ==========================================================================
 Browser Upgrade Prompt
 ========================================================================== */
@@ -80,6 +70,25 @@ Generic styles
     border-top: 1px solid rgba(0,0,0,.125);
 }
 
+.full-screen {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.height-200 {
+    min-height: 200px;
+}
+
+.custom-center {
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.custom-dim {
+    background-color: rgba(0,0,0,.6);
+}
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
 ========================================================================== */

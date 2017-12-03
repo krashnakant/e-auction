@@ -1,0 +1,23 @@
+<form name="bidNowForm" role="form" novalidate (ngSubmit)="save()" #bidNowForm="ngForm">
+    <div class="form-group">
+        <label class="form-control-label" jhiTranslate="eauctionApp.bid.bidPrice" for="amount">Bid Price</label>
+        <input type="number" class="form-control" name="amount" id="amount" [(ngModel)]="amount" required min="1"
+        />
+        <div [hidden]="!(bidNowForm.controls.amount?.dirty && bidNowForm.controls.amount?.invalid)">
+            <small class="form-text text-danger" [hidden]="!bidNowForm.controls.amount?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!bidNowForm.controls.amount?.errors?.min" jhiTranslate="entity.validation.min"
+                translateValues="{ min: 1 }">
+                This field should be at least 1.
+            </small>
+            <small class="form-text text-danger" [hidden]="!bidNowForm.controls.amount?.errors?.number" jhiTranslate="entity.validation.number">
+                This field should be a number.
+            </small>
+        </div>
+    </div>
+    <button type="submit" [disabled]="bidNowForm.form.invalid || isSaving" class="btn btn-primary">
+        <span class="fa fa-save"></span>&nbsp;
+        <span jhiTranslate="entity.action.save">Save</span>
+    </button>
+</form>
