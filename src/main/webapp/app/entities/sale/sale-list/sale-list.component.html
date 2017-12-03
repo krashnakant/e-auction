@@ -1,6 +1,5 @@
 <div class="container">
     <div class="row mt-4 mb-4">
-        <app-alert-error></app-alert-error>
         <div class="col-md-12">
             <h2 class="display-3 page-title text-center">{{category}}</h2>
         </div>
@@ -8,12 +7,7 @@
     <div class="row mt-4 mb-4">
         <div class="col-md-12">
             <div *ngFor="let sale of sales ;trackBy: trackId">
-                <h3 class="page-title font-weight-bold mb-0">
-                    {{sale.auctionTitle}}
-                    <button class="btn btn-outline-success float-right" [routerLink]="['/', { outlets: { popup: ['bid-new'] } }]">
-                        <span jhiTranslate="eauctionApp.bid.home.createLabel"> Create new Bid</span>
-                    </button>
-                </h3>
+                <h3 class="page-title font-weight-bold mb-0">{{sale.auctionTitle}}</h3>
                 <small class="d-inline-block">from {{sale.start | date:'medium'}} to {{sale.end | date:'medium'}}</small>
                 <hr class="my-1">
                 <app-item-card [saleId]="sale.id"></app-item-card>

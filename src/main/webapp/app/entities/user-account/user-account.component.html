@@ -37,7 +37,7 @@
                                 </td>-->
                                 <td><a [routerLink]="['../user-account', userAccount.id ]"><span jhiTranslate="{{'eauctionApp.UserAccountType.' + userAccount.accountType}}">{{userAccount.accountType}}</span></a></td>
                                 <td>
-                                    <app-user-account-label [id]="userAccount.userId"></app-user-account-label>
+                                    <app-user-label [id]="userAccount.userId"></app-user-label>
                                 </td>
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container">

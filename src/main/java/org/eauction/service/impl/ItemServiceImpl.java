@@ -91,4 +91,11 @@ public class ItemServiceImpl implements ItemService{
         return itemRepository.findAllBySale_Id(pageable, id)
             .map(itemMapper::toDto);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Long count() {
+		// TODO Auto-generated method stub
+		return itemRepository.count();
+	}
 }

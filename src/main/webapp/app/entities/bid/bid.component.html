@@ -45,12 +45,12 @@
                                 <td><a [routerLink]="['../bid', bid.id ]">{{bid.bidPrice}}</a></td>
                                 <td>
                                     <div *ngIf="bid.itemId">
-                                        <a [routerLink]="['../item', bid.itemId  ]">{{bid.itemId}}</a>
+                                        <a [routerLink]="['../item', bid.itemId  ]"><app-item-label [id]="bid.itemId"></app-item-label></a>
                                     </div>
                                 </td>
                                 <td>
                                     <div *ngIf="bid.accountId">
-                                        <a [routerLink]="['../user-account', bid.accountId  ]">{{bid.accountId}}</a>
+                                        <a [routerLink]="['../user-account', bid.accountId  ]"><app-user-account-label [id]="bid.accountId"></app-user-account-label></a>
                                     </div>
                                 </td>
                                 <td class="text-right">

@@ -56,7 +56,8 @@ relationship ManyToOne {
     ItemAttribute{attribute} to Attribute,
     Sale{category} to Category,
     Bid{item} to Item,
-    Bid{account} to UserAccount
+    Bid{account} to UserAccount,
+    Item{account} to UserAccount
 }
 
 relationship ManyToMany {

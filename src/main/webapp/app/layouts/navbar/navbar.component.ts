@@ -4,9 +4,11 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { ProfileService } from '../profiles/profile.service';
-import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from '../../shared';
+import { JhiLanguageHelper, Principal, LoginModalService, LoginService, UserService } from '../../shared';
 
 import { VERSION } from '../../app.constants';
+import { SubCategoryService } from '../../entities/sub-category/sub-category.service';
+import { Response } from '@angular/http/src/static_response';
 
 @Component({
     selector: 'app-navbar',
@@ -22,6 +24,8 @@ export class NavbarComponent implements OnInit {
     swaggerEnabled: boolean;
     modalRef: NgbModalRef;
     version: string;
+    subcount: number;
+    usercount: number;
 
     constructor(
         private loginService: LoginService,
@@ -30,6 +34,8 @@ export class NavbarComponent implements OnInit {
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
+        private subCategoryService: SubCategoryService,
+        private userService: UserService,
         private router: Router
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
@@ -44,6 +50,14 @@ export class NavbarComponent implements OnInit {
         this.profileService.getProfileInfo().then((profileInfo) => {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
+        });
+
+        this.subCategoryService.count().subscribe((res: Response) => {
+            this.subcount = parseInt(res.text(), 10);
+        });
+
+        this.userService.count().subscribe((res: Response) => {
+            this.usercount = parseInt(res.text(), 10);
         });
     }
 

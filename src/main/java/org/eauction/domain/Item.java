@@ -57,6 +57,9 @@ public class Item implements Serializable {
     private SubCategory subCategory;
 
     @ManyToOne
+    private UserAccount account;
+
+    @ManyToOne
     private Sale sale;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -169,6 +172,19 @@ public class Item implements Serializable {
 
     public void setSubCategory(SubCategory subCategory) {
         this.subCategory = subCategory;
+    }
+
+    public UserAccount getAccount() {
+        return account;
+    }
+
+    public Item account(UserAccount userAccount) {
+        this.account = userAccount;
+        return this;
+    }
+
+    public void setAccount(UserAccount userAccount) {
+        this.account = userAccount;
     }
 
     public Sale getSale() {

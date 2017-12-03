@@ -2,12 +2,11 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { EauctionSharedModule } from '../../shared';
-import { EauctionAdminModule } from '../../admin/admin.module';
+
 import {
     UserAccountService,
     UserAccountPopupService,
     UserAccountComponent,
-    UserAccountLabelComponent,
     UserAccountDetailComponent,
     UserAccountDialogComponent,
     UserAccountPopupComponent,
@@ -16,6 +15,7 @@ import {
     userAccountRoute,
     userAccountPopupRoute,
 } from './';
+import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...userAccountRoute,
@@ -25,12 +25,11 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
-        EauctionAdminModule,
+        EntitySharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         UserAccountComponent,
-        UserAccountLabelComponent,
         UserAccountDetailComponent,
         UserAccountDialogComponent,
         UserAccountDeleteDialogComponent,
@@ -39,7 +38,6 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         UserAccountComponent,
-        UserAccountLabelComponent,
         UserAccountDialogComponent,
         UserAccountPopupComponent,
         UserAccountDeleteDialogComponent,
@@ -49,9 +47,6 @@ const ENTITY_STATES = [
         UserAccountService,
         UserAccountPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    exports: [
-        UserAccountLabelComponent
-    ]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EauctionUserAccountModule {}

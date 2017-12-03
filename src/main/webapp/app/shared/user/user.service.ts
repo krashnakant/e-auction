@@ -32,6 +32,10 @@ export class UserService {
         return this.http.get(`${this.resourceByIdUrl}/${id}`).map((res: Response) => res.json());
     }
 
+    count(): Observable<Response> {
+        return this.http.get(`${this.resourceUrl}/count`);
+    }
+
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)

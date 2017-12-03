@@ -11,6 +11,17 @@
             <input type="text" class="form-control" id="id" name="id" [(ngModel)]="bid.id" readonly />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eauctionApp.bid.item" for="field_item">Item</label>
+            <select class="form-control" id="field_item" name="item" [(ngModel)]="bid.itemId" required>
+                <option [ngValue]="itemOption.id" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.itemTitle}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.item?.dirty && editForm.controls.item?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.item?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.bid.bidPrice" for="field_bidPrice">Bid Price</label>
             <input type="number" class="form-control" name="bidPrice" id="field_bidPrice" [(ngModel)]="bid.bidPrice" required min="1"
             />
@@ -24,18 +35,6 @@
                 </small>
                 <small class="form-text text-danger" [hidden]="!editForm.controls.bidPrice?.errors?.number" jhiTranslate="entity.validation.number">
                     This field should be a number.
-                </small>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eauctionApp.bid.item" for="field_item">Item</label>
-            <select class="form-control" id="field_item" name="item" [(ngModel)]="bid.itemId" required>
-                <option [ngValue]="itemOption.id" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.itemTitle}}</option>
-            </select>
-            <div [hidden]="!(editForm.controls.item?.dirty && editForm.controls.item?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.item?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
                 </small>
             </div>
         </div>

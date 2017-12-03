@@ -97,4 +97,11 @@ public class SaleServiceImpl implements SaleService{
             .map(saleMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Long count() {
+		// TODO Auto-generated method stub
+		return saleRepository.count();
+	}
 }

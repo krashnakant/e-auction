@@ -15,6 +15,12 @@
         },
         {
             "relationshipType": "many-to-one",
+            "relationshipName": "account",
+            "otherEntityName": "userAccount",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "relationshipName": "sale",
             "otherEntityName": "sale",
             "otherEntityField": "id"

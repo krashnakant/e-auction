@@ -196,4 +196,11 @@ public class UserResource {
             userService.getUserWithAuthorities(id)
                 .map(UserDTO::new));
     }
+    
+    @GetMapping("/users/count")
+	@Timed
+	public Long getCount() {
+		log.debug("REST request to get count");
+		return userService.count();
+	}
 }

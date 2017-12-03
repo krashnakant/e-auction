@@ -2,22 +2,21 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { EauctionSharedModule } from '../../shared';
-import { EauctionAttributeModule } from '../attribute/attribute.module';
 
 import {
     ItemAttributeService,
     ItemAttributePopupService,
     ItemAttributeComponent,
-    ItemAttributeListComponent,
-    ItemAttributeLabelComponent,
     ItemAttributeDetailComponent,
     ItemAttributeDialogComponent,
     ItemAttributePopupComponent,
     ItemAttributeDeletePopupComponent,
     ItemAttributeDeleteDialogComponent,
+    ItemAttributeListComponent,
     itemAttributeRoute,
     itemAttributePopupRoute,
 } from './';
+import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...itemAttributeRoute,
@@ -27,27 +26,25 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
-        EauctionAttributeModule,
+        EntitySharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         ItemAttributeComponent,
-        ItemAttributeListComponent,
-        ItemAttributeLabelComponent,
         ItemAttributeDetailComponent,
         ItemAttributeDialogComponent,
         ItemAttributeDeleteDialogComponent,
         ItemAttributePopupComponent,
         ItemAttributeDeletePopupComponent,
+        ItemAttributeListComponent
     ],
     entryComponents: [
         ItemAttributeComponent,
-        ItemAttributeListComponent,
-        ItemAttributeLabelComponent,
         ItemAttributeDialogComponent,
         ItemAttributePopupComponent,
         ItemAttributeDeleteDialogComponent,
         ItemAttributeDeletePopupComponent,
+        ItemAttributeListComponent
     ],
     providers: [
         ItemAttributeService,
@@ -55,8 +52,7 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     exports: [
-        ItemAttributeListComponent,
-        ItemAttributeLabelComponent
+        ItemAttributeListComponent
     ]
 })
 export class EauctionItemAttributeModule {}

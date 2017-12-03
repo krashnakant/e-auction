@@ -56,8 +56,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" [ngSwitch]="isAuthenticated()">
     <div class="container">
         <a class="navbar-brand" href="#" routerLink="/">
-            <img src="../../../content/images/logo.png" height="50" class="d-inline-block align-top" alt="e-Auction">&nbsp;
-            <span class="d-inline-block align-top navbar-title font-weight-bold fa-2x" jhiTranslate="global.title">e-Auction</span>
+            <img src="../../../content/images/auction.png" height="75" class="d-inline-block align-top" alt="e-Auction">
+            <!--&nbsp;<span class="d-inline-block align-top navbar-title font-weight-bold fa-2x" jhiTranslate="global.title">e-Auction</span>-->
         </a>
         <ul class="navbar-nav ml-auto float-right">
             <li class="nav-item">
@@ -68,12 +68,12 @@
             </li>
             <li class="nav-item">
                 <button type="button" class="btn btn-outline-dark font-weight-bold">Bidders
-                    <span class="badge badge-secondary">4</span>
+                    <span class="badge badge-secondary">{{usercount}}</span>
                 </button>
             </li>
             <li class="nav-item">
-                <button type="button" class="btn btn-outline-primary font-weight-bold">Products Active
-                    <span class="badge badge-warning">4</span>
+                <button type="button" class="btn btn-outline-primary font-weight-bold">Sub Categories
+                    <span class="badge badge-warning">{{subcount}}</span>
                 </button>
             </li>
         </ul>
@@ -92,17 +92,21 @@
                     <span jhiTranslate="global.menu.dashboard">Dashboard</span>
                 </a>
             </li>
+            <li class="nav-item" *ngSwitchCase="true">
+                <a class="nav-link font-weight-bold" routerLink="item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <span jhiTranslate="global.menu.entities.item">Item</span>(s)
+                </a>
+            </li>
+            <li class="nav-item" *ngSwitchCase="true">
+                <a class="nav-link font-weight-bold" routerLink="bid" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <span jhiTranslate="global.menu.entities.bid">Bid</span>(s)
+                </a>
+            </li>
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle font-weight-bold" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span jhiTranslate="global.menu.entities.main">Entities</span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
-                    <li>
-                        <a class="dropdown-item" routerLink="item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.entities.item">Item</span>
-                        </a>
-                    </li>
                     <li>
                         <a class="dropdown-item" routerLink="category" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
@@ -133,12 +137,6 @@
                         <a class="dropdown-item" routerLink="sale" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.sale">Sale</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="bid" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.entities.bid">Bid</span>
                         </a>
                     </li>
                     <li>
@@ -214,6 +212,7 @@
                 </ul>
             </li>
         </ul>
-        <button *appHasAnyAuthority="'ROLE_ADMIN'" [routerLink]="['/', { outlets: { popup: ['item-new'] } }]" class="btn btn-dark float-right">Create Item</button>
+        <button *ngSwitchCase="true" [routerLink]="['/', { outlets: { popup: ['item-new'] } }]" class="btn btn-dark float-right">Sell Item</button>
+        <button *ngSwitchCase="true" [routerLink]="['/', { outlets: { popup: ['bid-new'] } }]" class="btn btn-dark float-right ml-2">Bid Now</button>
     </div>
 </nav>

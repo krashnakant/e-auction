@@ -32,7 +32,8 @@
                 </ngb-tabset>
             </div>
             <div class="card-footer bg-transparent">
-                <h4 class="d-inline-block">₹ {{item.basePrice}}</h4>
+                <h4 class="d-inline-block float-left">₹ {{item.basePrice}}</h4>
+                <small class="d-inline-block float-right"><app-user-account-label [id]="item.accountId"></app-user-account-label></small>
             </div>
         </div>
     </div>

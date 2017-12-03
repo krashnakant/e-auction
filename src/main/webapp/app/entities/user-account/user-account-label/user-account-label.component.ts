@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { User, UserService } from '../../../shared';
+import { UserAccount } from '../user-account.model';
+import { UserAccountService } from '../user-account.service';
 
 @Component({
     selector: 'app-user-account-label',
@@ -9,10 +10,10 @@ import { User, UserService } from '../../../shared';
 export class UserAccountLabelComponent implements OnInit {
     @Input()
     id: number;
-    user: User;
+    userAccount: UserAccount;
 
     constructor(
-        private userService: UserService
+        private userService: UserAccountService
     ) { }
 
     ngOnInit() {
@@ -20,8 +21,8 @@ export class UserAccountLabelComponent implements OnInit {
     }
 
     load(id) {
-        this.userService.findById(id).subscribe((user) => {
-            this.user = user;
+        this.userService.find(id).subscribe((userAccount) => {
+            this.userAccount = userAccount;
         });
     }
     previousState() {

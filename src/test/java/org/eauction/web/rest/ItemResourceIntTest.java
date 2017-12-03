@@ -5,6 +5,7 @@ import org.eauction.EauctionApp;
 import org.eauction.domain.Item;
 import org.eauction.repository.ItemRepository;
 import org.eauction.service.ItemService;
+import org.eauction.service.UserAccountService;
 import org.eauction.service.dto.ItemDTO;
 import org.eauction.service.mapper.ItemMapper;
 import org.eauction.web.rest.errors.ExceptionTranslator;
@@ -65,7 +66,10 @@ public class ItemResourceIntTest {
 
     @Autowired
     private ItemService itemService;
-
+    
+    @Autowired
+    private UserAccountService userAccountService;
+    
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
@@ -85,7 +89,7 @@ public class ItemResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ItemResource itemResource = new ItemResource(itemService);
+        final ItemResource itemResource = new ItemResource(itemService, userAccountService);
         this.restItemMockMvc = MockMvcBuilders.standaloneSetup(itemResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

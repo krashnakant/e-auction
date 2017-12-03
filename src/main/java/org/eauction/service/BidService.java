@@ -45,4 +45,6 @@ public interface BidService {
 	void delete(Long id);
 
 	BidDTO findOneByItemAndUserAccount(Long itemid, Long accid);
+	
+	Long count();
 }

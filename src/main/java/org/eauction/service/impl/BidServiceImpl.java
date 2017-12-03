@@ -94,4 +94,11 @@ public class BidServiceImpl implements BidService {
 		return bidMapper.toDto(bid);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Long count() {
+		// TODO Auto-generated method stub
+		return bidRepository.count();
+	}
+
 }

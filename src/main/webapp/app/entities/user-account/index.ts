@@ -6,4 +6,5 @@ export * from './user-account-delete-dialog.component';
 export * from './user-account-detail.component';
 export * from './user-account.component';
 export * from './user-account-label/user-account-label.component';
+export * from './user-label/user-label.component';
 export * from './user-account.route';

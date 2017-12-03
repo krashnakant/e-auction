@@ -3,22 +3,21 @@ import { RouterModule } from '@angular/router';
 
 import { EauctionSharedModule } from '../../shared';
 import { EauctionItemAttributeModule } from '../item-attribute/item-attribute.module';
-import { EauctionBidModule } from '../bid/bid.module';
 
 import {
     ItemService,
     ItemPopupService,
     ItemComponent,
-    ItemCardComponent,
     ItemDetailComponent,
-    ItemLabelComponent,
     ItemDialogComponent,
     ItemPopupComponent,
     ItemDeletePopupComponent,
     ItemDeleteDialogComponent,
+    ItemCardComponent,
     itemRoute,
     itemPopupRoute,
 } from './';
+import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...itemRoute,
@@ -28,28 +27,26 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
+        EntitySharedModule,
         EauctionItemAttributeModule,
-        EauctionBidModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         ItemComponent,
-        ItemCardComponent,
         ItemDetailComponent,
-        ItemLabelComponent,
         ItemDialogComponent,
         ItemDeleteDialogComponent,
         ItemPopupComponent,
         ItemDeletePopupComponent,
+        ItemCardComponent
     ],
     entryComponents: [
         ItemComponent,
-        ItemCardComponent,
-        ItemLabelComponent,
         ItemDialogComponent,
         ItemPopupComponent,
         ItemDeleteDialogComponent,
         ItemDeletePopupComponent,
+        ItemCardComponent
     ],
     providers: [
         ItemService,
@@ -57,8 +54,7 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     exports: [
-        ItemCardComponent,
-        ItemLabelComponent
+        ItemCardComponent
     ]
 })
 export class EauctionItemModule {}

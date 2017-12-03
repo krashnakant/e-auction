@@ -43,4 +43,6 @@ public interface SaleService {
     void delete(Long id);
     
     List<SaleDTO> findAllByCategory_Id(Long id);
+    
+    Long count();
 }

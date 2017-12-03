@@ -8,18 +8,17 @@ import {
     SaleService,
     SalePopupService,
     SaleComponent,
-    SaleListComponent,
-    SaleLabelComponent,
     SaleDetailComponent,
     SaleDialogComponent,
     SalePopupComponent,
     SaleDeletePopupComponent,
     SaleDeleteDialogComponent,
+    SaleListComponent,
     saleRoute,
     salePopupRoute,
     SaleResolvePagingParams,
 } from './';
-import { EauctionCategoryModule } from '../category/category.module';
+import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...saleRoute,
@@ -29,28 +28,26 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
+        EntitySharedModule,
         EauctionItemModule,
-        EauctionCategoryModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         SaleComponent,
-        SaleListComponent,
-        SaleLabelComponent,
         SaleDetailComponent,
         SaleDialogComponent,
         SaleDeleteDialogComponent,
         SalePopupComponent,
         SaleDeletePopupComponent,
+        SaleListComponent
     ],
     entryComponents: [
         SaleComponent,
-        SaleListComponent,
-        SaleLabelComponent,
         SaleDialogComponent,
         SalePopupComponent,
         SaleDeleteDialogComponent,
         SaleDeletePopupComponent,
+        SaleListComponent
     ],
     providers: [
         SaleService,
@@ -59,7 +56,7 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     exports: [
-        SaleLabelComponent
+        SaleListComponent
     ]
 })
 export class EauctionSaleModule {}

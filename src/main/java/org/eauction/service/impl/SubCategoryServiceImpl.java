@@ -84,4 +84,11 @@ public class SubCategoryServiceImpl implements SubCategoryService{
         log.debug("Request to delete SubCategory : {}", id);
         subCategoryRepository.delete(id);
     }
+    
+    @Override
+	@Transactional(readOnly = true)
+	public Long count() {
+		// TODO Auto-generated method stub
+		return subCategoryRepository.count();
+	}
 }

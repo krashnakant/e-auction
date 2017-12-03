@@ -33,6 +33,8 @@ public class ItemDTO implements Serializable {
 
     private Long subCategoryId;
 
+    private Long accountId;
+
     private Long saleId;
 
     public Long getId() {
@@ -89,6 +91,14 @@ public class ItemDTO implements Serializable {
 
     public void setSubCategoryId(Long subCategoryId) {
         this.subCategoryId = subCategoryId;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long userAccountId) {
+        this.accountId = userAccountId;
     }
 
     public Long getSaleId() {

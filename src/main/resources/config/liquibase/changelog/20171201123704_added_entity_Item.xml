@@ -45,6 +45,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="account_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <column name="sale_id" type="bigint">
                 <constraints nullable="true" />
             </column>

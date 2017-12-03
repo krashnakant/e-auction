@@ -32,6 +32,10 @@
                                     <span jhiTranslate="eauctionApp.item.basePrice">Base Price</span>
                                     <span class="fa fa-sort"></span>
                                 </th>
+                                <th jhiSortBy="accountId">
+                                    <span jhiTranslate="eauctionApp.item.account">Account</span>
+                                    <span class="fa fa-sort"></span>
+                                </th>
                                 <!--<th jhiSortBy="subCategoryId">
                                     <span jhiTranslate="eauctionApp.item.subCategory">Sub Category</span>
                                     <span class="fa fa-sort"></span>
@@ -60,6 +64,11 @@
                                 </td>
                                 <!-- <td>{{item.itemDescription}}</td> -->
                                 <td>{{item.basePrice}}</td>
+                                <td>
+                                    <a [routerLink]="['../user-account', item.accountId  ]" href="#">
+                                        <app-user-account-label [id]="item.accountId"></app-user-account-label>
+                                    </a>
+                                </td>
                                 <!-- <td>
                                     <div *ngIf="item.subCategoryId">
                                         <a [routerLink]="['../sub-category', item.subCategoryId  ]">{{item.subCategoryId}}</a>
