@@ -1,20 +1,25 @@
 package org.eauction.service.dto;
 
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * A DTO for the Sale entity.
  */
 public class SaleDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1963549597421375269L;
+
+	private Long id;
 
     @NotNull
     @Size(max = 255)

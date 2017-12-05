@@ -1,8 +1,10 @@
 package org.eauction.config;
 
-import org.eauction.security.*;
-import org.eauction.security.jwt.*;
+import javax.annotation.PostConstruct;
 
+import org.eauction.security.AuthoritiesConstants;
+import org.eauction.security.jwt.JWTConfigurer;
+import org.eauction.security.jwt.TokenProvider;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +24,6 @@ import org.springframework.security.data.repository.query.SecurityEvaluationCont
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
-
-import javax.annotation.PostConstruct;
 
 @Configuration
 @Import(SecurityProblemSupport.class)

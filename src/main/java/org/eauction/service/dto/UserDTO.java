@@ -1,17 +1,17 @@
 package org.eauction.service.dto;
 
-import org.eauction.config.Constants;
-
-import org.eauction.domain.Authority;
-import org.eauction.domain.User;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.validation.constraints.*;
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.eauction.config.Constants;
+import org.eauction.domain.Authority;
+import org.eauction.domain.User;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * A DTO representing a user, with his authorities.

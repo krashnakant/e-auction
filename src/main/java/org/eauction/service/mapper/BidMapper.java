@@ -1,9 +1,9 @@
 package org.eauction.service.mapper;
 
-import org.eauction.domain.*;
+import org.eauction.domain.Bid;
 import org.eauction.service.dto.BidDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity Bid and its DTO BidDTO.

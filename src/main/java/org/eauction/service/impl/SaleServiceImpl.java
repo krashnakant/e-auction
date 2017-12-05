@@ -1,13 +1,12 @@
 package org.eauction.service.impl;
 
-import org.eauction.service.SaleService;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eauction.domain.Sale;
 import org.eauction.repository.SaleRepository;
+import org.eauction.service.SaleService;
 import org.eauction.service.dto.SaleDTO;
 import org.eauction.service.mapper.SaleMapper;
 import org.slf4j.Logger;

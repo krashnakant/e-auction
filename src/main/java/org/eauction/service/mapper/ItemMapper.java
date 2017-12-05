@@ -1,9 +1,9 @@
 package org.eauction.service.mapper;
 
-import org.eauction.domain.*;
+import org.eauction.domain.Item;
 import org.eauction.service.dto.ItemDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity Item and its DTO ItemDTO.

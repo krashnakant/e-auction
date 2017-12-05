@@ -1,19 +1,24 @@
 package org.eauction.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * A DTO for the ItemAttribute entity.
  */
 public class ItemAttributeDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4061989148012523699L;
+
+	private Long id;
 
     @NotNull
     @Size(max = 255)

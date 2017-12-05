@@ -1,20 +1,25 @@
 package org.eauction.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 
 /**
  * A DTO for the Bid entity.
  */
 public class BidDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3527514194696721215L;
+
+	private Long id;
 
     @NotNull
     @DecimalMin(value = "1")

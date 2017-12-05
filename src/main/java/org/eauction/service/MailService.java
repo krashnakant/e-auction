@@ -1,10 +1,12 @@
 package org.eauction.service;
 
-import org.eauction.domain.User;
+import java.util.Locale;
 
-import io.github.jhipster.config.JHipsterProperties;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang3.CharEncoding;
+import org.apache.commons.lang3.StringUtils;
+import org.eauction.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -14,10 +16,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.apache.commons.lang3.StringUtils;
 
-import javax.mail.internet.MimeMessage;
-import java.util.Locale;
+import io.github.jhipster.config.JHipsterProperties;
 
 /**
  * Service for sending emails.

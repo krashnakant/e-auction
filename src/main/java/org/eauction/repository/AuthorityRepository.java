@@ -1,7 +1,6 @@
 package org.eauction.repository;
 
 import org.eauction.domain.Authority;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

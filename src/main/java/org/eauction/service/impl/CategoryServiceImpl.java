@@ -1,18 +1,18 @@
 package org.eauction.service.impl;
 
-import org.eauction.service.CategoryService;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eauction.domain.Category;
 import org.eauction.repository.CategoryRepository;
+import org.eauction.service.CategoryService;
 import org.eauction.service.dto.CategoryDTO;
 import org.eauction.service.mapper.CategoryMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing Category.

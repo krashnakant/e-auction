@@ -1,13 +1,14 @@
 package org.eauction.service.mapper;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.eauction.domain.Authority;
 import org.eauction.domain.User;
 import org.eauction.service.dto.UserDTO;
-
 import org.springframework.stereotype.Service;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Mapper for the entity User and its DTO called UserDTO.

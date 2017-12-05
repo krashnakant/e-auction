@@ -1,12 +1,9 @@
 package org.eauction.config.social;
 
-import org.eauction.repository.SocialUserConnectionRepository;
 import org.eauction.repository.CustomSocialUsersConnectionRepository;
+import org.eauction.repository.SocialUserConnectionRepository;
 import org.eauction.security.jwt.TokenProvider;
 import org.eauction.security.social.CustomSignInAdapter;
-
-import io.github.jhipster.config.JHipsterProperties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +26,8 @@ import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 // jhipster-needle-add-social-connection-factory-import-package
+
+import io.github.jhipster.config.JHipsterProperties;
 
 /**
  * Basic Spring Social configuration.

@@ -1,7 +1,6 @@
 package org.eauction.security;
 
 import org.eauction.config.Constants;
-
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,8 @@
 package org.eauction.service;
 
-import org.eauction.service.dto.CategoryDTO;
 import java.util.List;
+
+import org.eauction.service.dto.CategoryDTO;
 
 /**
  * Service Interface for managing Category.

@@ -1,13 +1,17 @@
 package org.eauction.service;
 
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.Set;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.eauction.domain.Authority;
 import org.eauction.domain.User;
 import org.eauction.repository.AuthorityRepository;
 import org.eauction.repository.UserRepository;
 import org.eauction.security.AuthoritiesConstants;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,11 +20,6 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class SocialService {

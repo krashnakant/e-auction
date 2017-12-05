@@ -1,10 +1,11 @@
 package org.eauction.repository;
 
-import org.eauction.domain.Bid;
-import org.springframework.stereotype.Repository;
-
-import org.springframework.data.jpa.repository.*;
 import java.util.List;
+
+import org.eauction.domain.Bid;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  * Spring Data JPA repository for the Bid entity.

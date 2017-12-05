@@ -1,18 +1,23 @@
 package org.eauction.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * A DTO for the SubCategory entity.
  */
 public class SubCategoryDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3799177886347073867L;
+
+	private Long id;
 
     @NotNull
     @Size(max = 255)

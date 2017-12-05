@@ -1,13 +1,19 @@
 package org.eauction.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Optional;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.eauction.EauctionApp;
 import org.eauction.config.Constants;
 import org.eauction.domain.User;
 import org.eauction.repository.UserRepository;
 import org.eauction.service.dto.UserDTO;
 import org.eauction.service.util.RandomUtil;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,13 +23,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Test class for the UserResource REST controller.

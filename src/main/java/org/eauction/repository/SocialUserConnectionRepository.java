@@ -1,10 +1,10 @@
 package org.eauction.repository;
 
-import org.eauction.domain.SocialUserConnection;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Set;
+
+import org.eauction.domain.SocialUserConnection;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Spring Data JPA repository for the Social User Connection entity.

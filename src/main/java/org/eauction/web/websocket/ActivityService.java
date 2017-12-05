@@ -1,5 +1,10 @@
 package org.eauction.web.websocket;
 
+import static org.eauction.config.WebsocketConfiguration.IP_ADDRESS;
+
+import java.security.Principal;
+import java.time.Instant;
+
 import org.eauction.web.websocket.dto.ActivityDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +16,6 @@ import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
-
-import java.security.Principal;
-import java.time.Instant;
-
-import static org.eauction.config.WebsocketConfiguration.IP_ADDRESS;
 
 @Controller
 public class ActivityService implements ApplicationListener<SessionDisconnectEvent> {

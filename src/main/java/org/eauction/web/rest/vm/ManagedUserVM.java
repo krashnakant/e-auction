@@ -1,7 +1,8 @@
 package org.eauction.web.rest.vm;
 
-import org.eauction.service.dto.UserDTO;
 import javax.validation.constraints.Size;
+
+import org.eauction.service.dto.UserDTO;
 
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.

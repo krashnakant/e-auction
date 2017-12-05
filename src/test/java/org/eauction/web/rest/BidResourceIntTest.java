@@ -1,7 +1,22 @@
 package org.eauction.web.rest;
 
-import org.eauction.EauctionApp;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.eauction.web.rest.TestUtil.createFormattingConversionService;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.eauction.EauctionApp;
 import org.eauction.domain.Bid;
 import org.eauction.domain.Item;
 import org.eauction.domain.User;
@@ -10,7 +25,6 @@ import org.eauction.service.BidService;
 import org.eauction.service.dto.BidDTO;
 import org.eauction.service.mapper.BidMapper;
 import org.eauction.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,16 +38,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import java.math.BigDecimal;
-import java.util.List;
-
-import static org.eauction.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Test class for the BidResource REST controller.

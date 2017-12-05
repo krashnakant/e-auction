@@ -1,9 +1,13 @@
 package org.eauction.repository;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.eauction.config.Constants;
 import org.eauction.config.audit.AuditEventConverter;
 import org.eauction.domain.PersistentAuditEvent;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.audit.AuditEvent;
@@ -11,11 +15,6 @@ import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * An implementation of Spring Boot's AuditEventRepository.

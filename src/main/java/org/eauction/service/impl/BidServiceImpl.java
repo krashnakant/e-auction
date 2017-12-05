@@ -1,8 +1,8 @@
 package org.eauction.service.impl;
 
-import org.eauction.service.BidService;
 import org.eauction.domain.Bid;
 import org.eauction.repository.BidRepository;
+import org.eauction.service.BidService;
 import org.eauction.service.dto.BidDTO;
 import org.eauction.service.mapper.BidMapper;
 import org.slf4j.Logger;
