@@ -12,73 +12,42 @@
                     <table class="table table-hover">
                         <thead>
                             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-                                <!-- <th jhiSortBy="id">
-                                    <span jhiTranslate="global.field.id">ID</span>
-                                    <span class="fa fa-sort"></span>
-                                </th> -->
-                                <th jhiSortBy="itemImage">
-                                    <span jhiTranslate="eauctionApp.item.itemImage">Item Image</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>
-                                <th jhiSortBy="itemTitle">
-                                    <span jhiTranslate="eauctionApp.item.itemTitle">Item Title</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>
-                                <!--<th jhiSortBy="itemDescription">
-                                    <span jhiTranslate="eauctionApp.item.itemDescription">Item Description</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>-->
-                                <th jhiSortBy="basePrice">
-                                    <span jhiTranslate="eauctionApp.item.basePrice">Base Price</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>
-                                <th jhiSortBy="accountId">
-                                    <span jhiTranslate="eauctionApp.item.account">Account</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>
-                                <!--<th jhiSortBy="subCategoryId">
-                                    <span jhiTranslate="eauctionApp.item.subCategory">Sub Category</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>
-                                <th jhiSortBy="saleId">
-                                    <span jhiTranslate="eauctionApp.item.sale">Sale</span>
-                                    <span class="fa fa-sort"></span>
-                                </th> -->
+                                <!--<th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>-->
+                                <th jhiSortBy="itemTitle"><span jhiTranslate="eauctionApp.item.itemTitle">Item Title</span> <span class="fa fa-sort"></span></th>
+                                <!--<th jhiSortBy="itemDescription"><span jhiTranslate="eauctionApp.item.itemDescription">Item Description</span> <span class="fa fa-sort"></span></th>-->
+                                <th jhiSortBy="itemImage"><span jhiTranslate="eauctionApp.item.itemImage">Item Image</span> <span class="fa fa-sort"></span></th>
+                                <th jhiSortBy="basePrice"><span jhiTranslate="eauctionApp.item.basePrice">Base Price</span> <span class="fa fa-sort"></span></th>
+                                <th jhiSortBy="subCategorySubCategoryName"><span jhiTranslate="eauctionApp.item.subCategory">Sub Category</span> <span class="fa fa-sort"></span></th>
+                                <th jhiSortBy="userLogin"><span jhiTranslate="eauctionApp.item.user">User</span> <span class="fa fa-sort"></span></th>
+                                <th jhiSortBy="saleAuctionTitle"><span jhiTranslate="eauctionApp.item.sale">Sale</span> <span class="fa fa-sort"></span></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
                             <tr *ngFor="let item of items ;trackBy: trackId">
-                                <!--<td>
-                                    <a [routerLink]="['../item', item.id ]">{{item.id}}</a>
-                                </td>-->
+                                <!--<td><a [routerLink]="['../item', item.id ]">{{item.id}}</a></td>-->
+                                <td>{{item.itemTitle}}</td>
+                                <!--<td>{{item.itemDescription}}</td>-->
                                 <td>
                                     <a *ngIf="item.itemImage" (click)="openFile(item.itemImageContentType, item.itemImage)">
-                                        <img [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" style="max-height: 50px;" alt="item image"
-                                        />
+                                        <img [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" style="max-height: 50px;" alt="item image"/>
                                     </a>
-                                    <!-- <span *ngIf="item.itemImage">{{item.itemImageContentType}}, {{byteSize(item.itemImage)}}</span> -->
+                                    <!--<span *ngIf="item.itemImage">{{item.itemImageContentType}}, {{byteSize(item.itemImage)}}</span>-->
                                 </td>
-                                <td>
-                                    <a [routerLink]="['../item', item.id ]">{{item.itemTitle}}</a>
-                                </td>
-                                <!-- <td>{{item.itemDescription}}</td> -->
                                 <td>{{item.basePrice}}</td>
                                 <td>
-                                    <a [routerLink]="['../user-account', item.accountId  ]" href="#">
-                                        <app-user-account-label [id]="item.accountId"></app-user-account-label>
-                                    </a>
-                                </td>
-                                <!-- <td>
                                     <div *ngIf="item.subCategoryId">
-                                        <a [routerLink]="['../sub-category', item.subCategoryId  ]">{{item.subCategoryId}}</a>
+                                        <a [routerLink]="['../sub-category', item.subCategoryId  ]">{{item.subCategorySubCategoryName}}</a>
                                     </div>
+                                </td>
+                                <td>
+                                    {{item.userLogin}}
                                 </td>
                                 <td>
                                     <div *ngIf="item.saleId">
-                                        <a [routerLink]="['../sale', item.saleId  ]">{{item.saleId}}</a>
+                                        <a [routerLink]="['../sale', item.saleId  ]">{{item.saleAuctionTitle}}</a>
                                     </div>
-                                </td> -->
+                                </td>
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container">
                                         <button type="submit" [routerLink]="['../item', item.id ]" class="btn btn-info btn-sm">

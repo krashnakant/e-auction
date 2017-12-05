@@ -3,15 +3,16 @@ package org.eauction.web.rest;
 import org.eauction.EauctionApp;
 
 import org.eauction.domain.Item;
+import org.eauction.domain.SubCategory;
+import org.eauction.domain.User;
+import org.eauction.domain.Sale;
 import org.eauction.repository.ItemRepository;
 import org.eauction.service.ItemService;
-import org.eauction.service.UserAccountService;
 import org.eauction.service.dto.ItemDTO;
 import org.eauction.service.mapper.ItemMapper;
 import org.eauction.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -41,7 +42,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @see ItemResource
  */
-@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = EauctionApp.class)
 public class ItemResourceIntTest {
@@ -68,10 +68,7 @@ public class ItemResourceIntTest {
 
     @Autowired
     private ItemService itemService;
-    
-    @Autowired
-    private UserAccountService userAccountService;
-    
+
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
@@ -91,7 +88,7 @@ public class ItemResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ItemResource itemResource = new ItemResource(itemService, userAccountService);
+        final ItemResource itemResource = new ItemResource(itemService);
         this.restItemMockMvc = MockMvcBuilders.standaloneSetup(itemResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -112,6 +109,21 @@ public class ItemResourceIntTest {
             .itemImage(DEFAULT_ITEM_IMAGE)
             .itemImageContentType(DEFAULT_ITEM_IMAGE_CONTENT_TYPE)
             .basePrice(DEFAULT_BASE_PRICE);
+        // Add required entity
+        SubCategory subCategory = SubCategoryResourceIntTest.createEntity(em);
+        em.persist(subCategory);
+        em.flush();
+        item.setSubCategory(subCategory);
+        // Add required entity
+        User user = UserResourceIntTest.createEntity(em);
+        em.persist(user);
+        em.flush();
+        item.setUser(user);
+        // Add required entity
+        Sale sale = SaleResourceIntTest.createEntity(em);
+        em.persist(sale);
+        em.flush();
+        item.setSale(sale);
         return item;
     }
 

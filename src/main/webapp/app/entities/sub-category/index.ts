@@ -5,5 +5,4 @@ export * from './sub-category-dialog.component';
 export * from './sub-category-delete-dialog.component';
 export * from './sub-category-detail.component';
 export * from './sub-category.component';
-export * from './sub-category-label/sub-category-label.component';
 export * from './sub-category.route';

@@ -18,37 +18,27 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <!--<th>
-                                    <span jhiTranslate="global.field.id">ID</span>
-                                </th>-->
-                                <th>
-                                    <span jhiTranslate="eauctionApp.itemAttribute.value">Value</span>
-                                </th>
-                                <th>
-                                    <span jhiTranslate="eauctionApp.itemAttribute.attribute">Attribute</span>
-                                </th>
-                                <th>
-                                    <span jhiTranslate="eauctionApp.itemAttribute.item">Item</span>
-                                </th>
+                                <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
+                                <th><span jhiTranslate="eauctionApp.itemAttribute.item">Item</span></th>
+                                <th><span jhiTranslate="eauctionApp.itemAttribute.attribute">Attribute</span></th>
+                                <th><span jhiTranslate="eauctionApp.itemAttribute.value">Value</span></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let itemAttribute of itemAttributes ;trackBy: trackId">
-                                <!--<td>
-                                    <a [routerLink]="['../item-attribute', itemAttribute.id ]">{{itemAttribute.id}}</a>
-                                </td>-->
-                                <td><a [routerLink]="['../item-attribute', itemAttribute.id ]">{{itemAttribute.value}}</a></td>
-                                <td>
-                                    <div *ngIf="itemAttribute.attributeId">
-                                        <a [routerLink]="['../attribute', itemAttribute.attributeId  ]">{{itemAttribute.attributeId}}</a>
-                                    </div>
-                                </td>
+                                <!--<td><a [routerLink]="['../item-attribute', itemAttribute.id ]">{{itemAttribute.id}}</a></td>-->
                                 <td>
                                     <div *ngIf="itemAttribute.itemId">
-                                        <a [routerLink]="['../item', itemAttribute.itemId  ]">{{itemAttribute.itemId}}</a>
+                                        <a [routerLink]="['../item', itemAttribute.itemId  ]">{{itemAttribute.itemItemTitle}}</a>
                                     </div>
                                 </td>
+                                <td>
+                                    <div *ngIf="itemAttribute.attributeId">
+                                        <a [routerLink]="['../attribute', itemAttribute.attributeId  ]">{{itemAttribute.attributeAttributeName}}</a>
+                                    </div>
+                                </td>
+                                <td>{{itemAttribute.value}}</td>
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container">
                                         <button type="submit" [routerLink]="['../item-attribute', itemAttribute.id ]" class="btn btn-info btn-sm">

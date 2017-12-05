@@ -7,18 +7,12 @@
                 <small>
                     <span jhiTranslate="eauctionApp.bid.item">Item</span>
                     <div *ngIf="bid.itemId">
-                        <a [routerLink]="['../item', bid.itemId  ]">
-                            <app-item-label [id]="bid.itemId"></app-item-label>
-                        </a>
+                        <a [routerLink]="['/item', bid.itemId]">{{bid.itemItemTitle}}</a>
                     </div>
                 </small>
                 <small>
-                    <span jhiTranslate="eauctionApp.bid.account">Account</span>
-                    <div *ngIf="bid.accountId">
-                        <a [routerLink]="['../user-account', bid.accountId  ]">
-                            <app-user-account-label [id]="bid.accountId"></app-user-account-label>
-                        </a>
-                    </div>
+                    <span jhiTranslate="eauctionApp.bid.user">User</span>
+                    {{bid.userLogin}}
                 </small>
             </div>
             <div class="card-footer bg-transparent">

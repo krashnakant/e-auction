@@ -1,7 +1,8 @@
 package org.eauction.service.dto;
 
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
+import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,17 +17,26 @@ public class SaleDTO implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 255)
     private String auctionTitle;
 
     @NotNull
-    private ZonedDateTime start;
+    private LocalDate start;
 
     @NotNull
-    private ZonedDateTime end;
+    private LocalDate end;
 
     private Long categoryId;
+
+    private String categoryCategoryName;
     
-    private Set<UserAccountDTO> accounts = new HashSet<>();
+    private String createdBy;
+
+    private Instant createdDate;
+
+    private String lastModifiedBy;
+
+    private Instant lastModifiedDate;
 
     public Long getId() {
         return id;
@@ -44,19 +54,19 @@ public class SaleDTO implements Serializable {
         this.auctionTitle = auctionTitle;
     }
 
-    public ZonedDateTime getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public void setStart(ZonedDateTime start) {
+    public void setStart(LocalDate start) {
         this.start = start;
     }
 
-    public ZonedDateTime getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public void setEnd(ZonedDateTime end) {
+    public void setEnd(LocalDate end) {
         this.end = end;
     }
 
@@ -68,15 +78,47 @@ public class SaleDTO implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public Set<UserAccountDTO> getAccounts() {
-        return accounts;
+    public String getCategoryCategoryName() {
+        return categoryCategoryName;
     }
 
-    public void setAccounts(Set<UserAccountDTO> userAccounts) {
-        this.accounts = userAccounts;
+    public void setCategoryCategoryName(String categoryCategoryName) {
+        this.categoryCategoryName = categoryCategoryName;
     }
 
-    @Override
+    public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

@@ -41,6 +41,4 @@ public interface ItemService {
     void delete(Long id);
     
     Page<ItemDTO> findAllBySale_Id(Pageable pageable, Long id);
-    
-    Long count();
 }

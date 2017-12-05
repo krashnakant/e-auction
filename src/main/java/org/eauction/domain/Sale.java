@@ -7,7 +7,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -19,7 +19,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "sale")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Sale implements Serializable {
+public class Sale extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,31 +28,26 @@ public class Sale implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "auction_title", nullable = false)
+    @Size(max = 255)
+    @Column(name = "auction_title", length = 255, nullable = false)
     private String auctionTitle;
 
     @NotNull
     @Column(name = "app_start", nullable = false)
-    private ZonedDateTime start;
+    private LocalDate start;
 
     @NotNull
     @Column(name = "app_end", nullable = false)
-    private ZonedDateTime end;
+    private LocalDate end;
 
     @OneToMany(mappedBy = "sale")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Item> items = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private Category category;
-
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "sale_accounts",
-               joinColumns = @JoinColumn(name="sales_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="accounts_id", referencedColumnName="id"))
-    private Set<UserAccount> accounts = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -76,29 +71,29 @@ public class Sale implements Serializable {
         this.auctionTitle = auctionTitle;
     }
 
-    public ZonedDateTime getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public Sale start(ZonedDateTime start) {
+    public Sale start(LocalDate start) {
         this.start = start;
         return this;
     }
 
-    public void setStart(ZonedDateTime start) {
+    public void setStart(LocalDate start) {
         this.start = start;
     }
 
-    public ZonedDateTime getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public Sale end(ZonedDateTime end) {
+    public Sale end(LocalDate end) {
         this.end = end;
         return this;
     }
 
-    public void setEnd(ZonedDateTime end) {
+    public void setEnd(LocalDate end) {
         this.end = end;
     }
 
@@ -138,31 +133,6 @@ public class Sale implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public Set<UserAccount> getAccounts() {
-        return accounts;
-    }
-
-    public Sale accounts(Set<UserAccount> userAccounts) {
-        this.accounts = userAccounts;
-        return this;
-    }
-
-    public Sale addAccounts(UserAccount userAccount) {
-        this.accounts.add(userAccount);
-        userAccount.getSales().add(this);
-        return this;
-    }
-
-    public Sale removeAccounts(UserAccount userAccount) {
-        this.accounts.remove(userAccount);
-        userAccount.getSales().remove(this);
-        return this;
-    }
-
-    public void setAccounts(Set<UserAccount> userAccounts) {
-        this.accounts = userAccounts;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

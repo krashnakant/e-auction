@@ -2,45 +2,52 @@
 
     <div class="modal-header">
         <h4 class="modal-title" id="myAttributeLabel" jhiTranslate="eauctionApp.attribute.home.createOrEditLabel">Create or edit a Attribute</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <app-alert-error></app-alert-error>
         <div class="form-group" [hidden]="!attribute.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="attribute.id" readonly />
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="attribute.id" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.attribute.attributeName" for="field_attributeName">Attribute Name</label>
-            <input type="text" class="form-control" name="attributeName" id="field_attributeName" [(ngModel)]="attribute.attributeName"
-                required/>
+            <input type="text" class="form-control" name="attributeName" id="field_attributeName"
+                [(ngModel)]="attribute.attributeName" required maxlength="255"/>
             <div [hidden]="!(editForm.controls.attributeName?.dirty && editForm.controls.attributeName?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.attributeName?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.attributeName?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.attributeName?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
                 </small>
             </div>
         </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.attribute.subCategory" for="field_subCategory">Sub Category</label>
-            <select class="form-control" id="field_subCategory" name="subCategory" [(ngModel)]="attribute.subCategoryId" required>
+            <select class="form-control" id="field_subCategory" name="subCategory" [(ngModel)]="attribute.subCategoryId"  required>
+                <option *ngIf="!editForm.value.subCategory" [ngValue]="null" selected></option>
                 <option [ngValue]="subCategoryOption.id" *ngFor="let subCategoryOption of subcategories; trackBy: trackSubCategoryById">{{subCategoryOption.subCategoryName}}</option>
             </select>
-            <div [hidden]="!(editForm.controls.subCategory?.dirty && editForm.controls.subCategory?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.subCategory?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
-                </small>
-            </div>
+        </div>
+        <div [hidden]="!(editForm.controls.subCategory?.dirty && editForm.controls.subCategory?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.subCategory?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;
-            <span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;
-            <span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>
 </form>

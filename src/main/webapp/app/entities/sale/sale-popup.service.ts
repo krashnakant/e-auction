@@ -1,7 +1,6 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { DatePipe } from '@angular/common';
 import { Sale } from './sale.model';
 import { SaleService } from './sale.service';
 
@@ -10,7 +9,6 @@ export class SalePopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
-        private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private saleService: SaleService
@@ -28,10 +26,20 @@ export class SalePopupService {
 
             if (id) {
                 this.saleService.find(id).subscribe((sale) => {
-                    sale.start = this.datePipe
-                        .transform(sale.start, 'yyyy-MM-ddTHH:mm:ss');
-                    sale.end = this.datePipe
-                        .transform(sale.end, 'yyyy-MM-ddTHH:mm:ss');
+                    if (sale.start) {
+                        sale.start = {
+                            year: sale.start.getFullYear(),
+                            month: sale.start.getMonth() + 1,
+                            day: sale.start.getDate()
+                        };
+                    }
+                    if (sale.end) {
+                        sale.end = {
+                            year: sale.end.getFullYear(),
+                            month: sale.end.getMonth() + 1,
+                            day: sale.end.getDate()
+                        };
+                    }
                     this.ngbModalRef = this.saleModalRef(component, sale);
                     resolve(this.ngbModalRef);
                 });

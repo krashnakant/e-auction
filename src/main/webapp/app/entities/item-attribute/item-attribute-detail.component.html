@@ -7,13 +7,13 @@
                 <small>
                     <span jhiTranslate="eauctionApp.itemAttribute.attribute">Attribute</span>
                     <div *ngIf="itemAttribute.attributeId">
-                        <a [routerLink]="['/attribute', itemAttribute.attributeId]">{{itemAttribute.attributeId}}</a>
+                        <a [routerLink]="['/attribute', itemAttribute.attributeId]">{{itemAttribute.attributeAttributeName}}</a>
                     </div>
                 </small>
                 <small>
                     <span jhiTranslate="eauctionApp.itemAttribute.item">Item</span>
                     <div *ngIf="itemAttribute.itemId">
-                        <a [routerLink]="['/item', itemAttribute.itemId]">{{itemAttribute.itemId}}</a>
+                        <a [routerLink]="['/item', itemAttribute.itemId]">{{itemAttribute.itemItemTitle}}</a>
                     </div>
                 </small>
             </div>

@@ -1,67 +1,51 @@
 entity Category {
-	categoryName String required,
+	categoryName String required maxlength(255),
     categoryImage ImageBlob required
 }
 
 entity SubCategory {
-	subCategoryName String required
+	subCategoryName String required maxlength(255)
 }
 
 entity Attribute {
-	attributeName String required
+	attributeName String required maxlength(255)
 }
 
 entity Item {
-	itemTitle String required,
-	itemDescription String required,
+	itemTitle String required maxlength(255),
+	itemDescription String required maxlength(255),
     itemImage ImageBlob required,
     basePrice BigDecimal required min(1)
 }
 
 entity ItemAttribute {
-	value String required
+	value String required maxlength(255)
 }
 
 entity Sale {
-	auctionTitle String required,
-    start ZonedDateTime required,
-    end ZonedDateTime required
+	auctionTitle String required maxlength(255),
+    start LocalDate required,
+    end LocalDate required
 }
 
 entity Bid {
 	bidPrice BigDecimal required min(1)
 }
 
-enum UserAccountType {
-	SELLER, BUYER
-}
-
-entity UserAccount {
-	accountType UserAccountType
-}
-
-relationship OneToOne {
-	UserAccount{user} to User
-}
-
 relationship OneToMany {
-	Category{subCategories} to SubCategory{category},
-    SubCategory{attributes} to Attribute{subCategory},
-    Item{itemAttributes} to ItemAttribute{item},
-    Sale{items} to Item{sale}
+	Category{subCategories} to SubCategory{category(categoryName) required},
+    SubCategory{attributes} to Attribute{subCategory(subCategoryName) required},
+    Item{itemAttributes} to ItemAttribute{item(itemTitle) required},
+    Sale{items} to Item{sale(auctionTitle) required}
 }
 
 relationship ManyToOne {
-	Item{subCategory} to SubCategory,
-    ItemAttribute{attribute} to Attribute,
-    Sale{category} to Category,
-    Bid{item} to Item,
-    Bid{account} to UserAccount,
-    Item{account} to UserAccount
-}
-
-relationship ManyToMany {
-	Sale{accounts} to UserAccount{sales}
+	Item{subCategory(subCategoryName) required} to SubCategory,
+    ItemAttribute{attribute(attributeName) required} to Attribute,
+    Sale{category(categoryName) required} to Category,
+    Bid{item(itemTitle) required} to Item
+    Bid{user(login) required} to User,
+    Item{user(login) required} to User
 }
 
 paginate Item, Bid with infinite-scroll

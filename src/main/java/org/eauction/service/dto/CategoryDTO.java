@@ -3,6 +3,7 @@ package org.eauction.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -16,13 +17,14 @@ public class CategoryDTO implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 255)
     private String categoryName;
 
     @NotNull
     @Lob
     private byte[] categoryImage;
     private String categoryImageContentType;
-
+    
     public Long getId() {
         return id;
     }

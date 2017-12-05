@@ -5,6 +5,5 @@ export * from './item-attribute-dialog.component';
 export * from './item-attribute-delete-dialog.component';
 export * from './item-attribute-detail.component';
 export * from './item-attribute.component';
-export * from './item-attribute-list/item-attribute-list.component'
-export * from './item-attribute-label/item-attribute-label.component'
+export * from './item-attribute-list/item-attribute-list.component';
 export * from './item-attribute.route';

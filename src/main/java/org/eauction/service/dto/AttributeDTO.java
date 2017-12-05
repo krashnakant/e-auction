@@ -3,6 +3,7 @@ package org.eauction.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -15,10 +16,13 @@ public class AttributeDTO implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 255)
     private String attributeName;
 
     private Long subCategoryId;
 
+    private String subCategorySubCategoryName;
+    
     public Long getId() {
         return id;
     }
@@ -43,7 +47,15 @@ public class AttributeDTO implements Serializable {
         this.subCategoryId = subCategoryId;
     }
 
-    @Override
+    public String getSubCategorySubCategoryName() {
+        return subCategorySubCategoryName;
+    }
+
+    public void setSubCategorySubCategoryName(String subCategorySubCategoryName) {
+        this.subCategorySubCategoryName = subCategorySubCategoryName;
+    }
+
+ 	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

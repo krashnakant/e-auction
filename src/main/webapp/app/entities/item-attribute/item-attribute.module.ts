@@ -16,7 +16,6 @@ import {
     itemAttributeRoute,
     itemAttributePopupRoute,
 } from './';
-import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...itemAttributeRoute,
@@ -26,7 +25,6 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
-        EntitySharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [

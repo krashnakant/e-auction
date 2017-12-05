@@ -27,7 +27,8 @@ public class SubCategory implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "sub_category_name", nullable = false)
+    @Size(max = 255)
+    @Column(name = "sub_category_name", length = 255, nullable = false)
     private String subCategoryName;
 
     @OneToMany(mappedBy = "subCategory")
@@ -35,7 +36,8 @@ public class SubCategory implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Attribute> attributes = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private Category category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

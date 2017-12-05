@@ -10,7 +10,7 @@ import { Bid } from './bid.model';
 import { BidPopupService } from './bid-popup.service';
 import { BidService } from './bid.service';
 import { Item, ItemService } from '../item';
-import { UserAccount, UserAccountService } from '../user-account';
+import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -24,14 +24,14 @@ export class BidDialogComponent implements OnInit {
 
     items: Item[];
 
-    useraccounts: UserAccount[];
+    users: User[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private bidService: BidService,
         private itemService: ItemService,
-        private userAccountService: UserAccountService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -40,8 +40,8 @@ export class BidDialogComponent implements OnInit {
         this.isSaving = false;
         this.itemService.query()
             .subscribe((res: ResponseWrapper) => { this.items = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.userAccountService.query()
-            .subscribe((res: ResponseWrapper) => { this.useraccounts = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -65,7 +65,7 @@ export class BidDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Bid) {
-        this.eventManager.broadcast({ name: 'bidListModification', content: 'OK' });
+        this.eventManager.broadcast({ name: 'bidListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -82,7 +82,7 @@ export class BidDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackUserAccountById(index: number, item: UserAccount) {
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 }
@@ -98,11 +98,11 @@ export class BidPopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private bidPopupService: BidPopupService
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if (params['id']) {
+            if ( params['id'] ) {
                 this.bidPopupService
                     .open(BidDialogComponent as Component, params['id']);
             } else {

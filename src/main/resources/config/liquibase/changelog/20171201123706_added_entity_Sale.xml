@@ -26,33 +26,29 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="app_start" type="timestamp">
+            <column name="app_start" type="date">
                 <constraints nullable="false" />
             </column>
 
-            <column name="app_end" type="timestamp">
+            <column name="app_end" type="date">
                 <constraints nullable="false" />
             </column>
 
             <column name="category_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
+            
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="sale" columnName="app_start" columnDataType="datetime"/>
-        <dropDefaultValue tableName="sale" columnName="app_end" columnDataType="datetime"/>
-        
-        <createTable tableName="sale_accounts">
-            <column name="accounts_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="sales_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="sales_id, accounts_id" tableName="sale_accounts"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

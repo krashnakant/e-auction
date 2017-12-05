@@ -16,7 +16,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "bid")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Bid implements Serializable {
+public class Bid extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,11 +29,13 @@ public class Bid implements Serializable {
     @Column(name = "bid_price", precision=10, scale=2, nullable = false)
     private BigDecimal bidPrice;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private Item item;
 
-    @ManyToOne
-    private UserAccount account;
+    @ManyToOne(optional = false)
+    @NotNull
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -70,17 +72,17 @@ public class Bid implements Serializable {
         this.item = item;
     }
 
-    public UserAccount getAccount() {
-        return account;
+    public User getUser() {
+        return user;
     }
 
-    public Bid account(UserAccount userAccount) {
-        this.account = userAccount;
+    public Bid user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setAccount(UserAccount userAccount) {
-        this.account = userAccount;
+    public void setUser(User user) {
+        this.user = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

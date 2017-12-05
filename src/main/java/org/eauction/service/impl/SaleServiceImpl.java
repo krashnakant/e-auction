@@ -74,7 +74,7 @@ public class SaleServiceImpl implements SaleService{
     @Transactional(readOnly = true)
     public SaleDTO findOne(Long id) {
         log.debug("Request to get Sale : {}", id);
-        Sale sale = saleRepository.findOneWithEagerRelationships(id);
+        Sale sale = saleRepository.findOne(id);
         return saleMapper.toDto(sale);
     }
 
@@ -96,12 +96,5 @@ public class SaleServiceImpl implements SaleService{
         return saleRepository.findAllByCategory_Id(id).stream()
             .map(saleMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
-	public Long count() {
-		// TODO Auto-generated method stub
-		return saleRepository.count();
 	}
 }

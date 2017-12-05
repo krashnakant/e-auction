@@ -10,7 +10,6 @@ import { Sale } from './sale.model';
 import { SalePopupService } from './sale-popup.service';
 import { SaleService } from './sale.service';
 import { Category, CategoryService } from '../category';
-import { UserAccount, UserAccountService } from '../user-account';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,15 +22,14 @@ export class SaleDialogComponent implements OnInit {
     isSaving: boolean;
 
     categories: Category[];
-
-    useraccounts: UserAccount[];
+    startDp: any;
+    endDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private saleService: SaleService,
         private categoryService: CategoryService,
-        private userAccountService: UserAccountService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -40,8 +38,6 @@ export class SaleDialogComponent implements OnInit {
         this.isSaving = false;
         this.categoryService.query()
             .subscribe((res: ResponseWrapper) => { this.categories = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.userAccountService.query()
-            .subscribe((res: ResponseWrapper) => { this.useraccounts = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -80,21 +76,6 @@ export class SaleDialogComponent implements OnInit {
 
     trackCategoryById(index: number, item: Category) {
         return item.id;
-    }
-
-    trackUserAccountById(index: number, item: UserAccount) {
-        return item.id;
-    }
-
-    getSelected(selectedVals: Array<any>, option: any) {
-        if (selectedVals) {
-            for (let i = 0; i < selectedVals.length; i++) {
-                if (option.id === selectedVals[i].id) {
-                    return selectedVals[i];
-                }
-            }
-        }
-        return option;
     }
 }
 

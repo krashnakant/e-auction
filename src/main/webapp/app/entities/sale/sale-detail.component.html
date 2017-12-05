@@ -1,64 +1,40 @@
 <div class="container" *ngIf="sale">
-    <div class="row mt-4 mb-4">
-        <div class="col-md-12">
-            <app-alert-error></app-alert-error>
-            <div class="card jh-card">
-                <div class="card-header bg-transparent">
-                    <h2 class="d-inline-block">
-                        <span jhiTranslate="eauctionApp.sale.detail.title">Sale</span> - {{sale.auctionTitle}}
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <dl class="row-md jh-entity-details">
-                        <dt>
-                            <span jhiTranslate="eauctionApp.sale.auctionTitle">Auction Title</span>
-                        </dt>
-                        <dd>
-                            <span>{{sale.auctionTitle}}</span>
-                        </dd>
-                        <dt>
-                            <span jhiTranslate="eauctionApp.sale.start">Start</span>
-                        </dt>
-                        <dd>
-                            <span>{{sale.start | date:'medium'}}</span>
-                        </dd>
-                        <dt>
-                            <span jhiTranslate="eauctionApp.sale.end">End</span>
-                        </dt>
-                        <dd>
-                            <span>{{sale.end | date:'medium'}}</span>
-                        </dd>
-                        <dt>
-                            <span jhiTranslate="eauctionApp.sale.category">Category</span>
-                        </dt>
-                        <dd>
-                            <div *ngIf="sale.categoryId">
-                                <a [routerLink]="['../category', sale.categoryId  ]" href="#">
-                                    <app-category-label [id]="sale.categoryId"></app-category-label>
-                                </a>
-                            </div>
-                        </dd>
-                        <dt>
-                            <span jhiTranslate="eauctionApp.sale.accounts">Accounts</span>
-                        </dt>
-                        <dd>
-                            <span *ngFor="let accounts of sale.accounts; let last = last">
-                                <a [routerLink]="['/user-account', accounts?.id ]">{{accounts.id}}</a>{{last ? '' : ', '}}
-                            </span>
-                        </dd>
-                    </dl>
-                </div>
-                <div class="card-footer bg-transparent">
-                    <button type="submit" (click)="previousState()" class="btn btn-info ">
+    <div class="row mt-4 mb-4 justify-content-md-center">
+        <app-alert-error></app-alert-error>
+        <div class="card jh-card col-md-6">
+            <div class="card-header bg-transparent">
+                <h2 class="d-inline-block">
+                    {{sale.auctionTitle}}
+                </h2>
+            </div>
+            <div class="card-body">
+                <dl class="row-md jh-entity-details">
+                    <dt><span jhiTranslate="eauctionApp.sale.start">Start</span></dt>
+                    <dd>
+                        <span>{{sale.start | date:'mediumDate'}}</span>
+                    </dd>
+                    <dt><span jhiTranslate="eauctionApp.sale.end">End</span></dt>
+                    <dd>
+                        <span>{{sale.end | date:'mediumDate'}}</span>
+                    </dd>
+                    <dt><span jhiTranslate="eauctionApp.sale.category">Category</span></dt>
+                    <dd>
+                        <div *ngIf="sale.categoryId">
+                            <a [routerLink]="['/category', sale.categoryId]">{{sale.categoryCategoryName}}</a>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-transparent">
+                <button type="submit" (click)="previousState()" class="btn btn-info ">
                         <span class="fa fa-arrow-left"></span>&nbsp;
                         <span jhiTranslate="entity.action.back"> Back</span>
                     </button>
 
-                    <button type="button" [routerLink]="['/', { outlets: { popup: 'sale/'+ sale.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary">
+                <button type="button" [routerLink]="['/', { outlets: { popup: 'sale/'+ sale.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary">
                         <span class="fa fa-pencil"></span>&nbsp;
                         <span jhiTranslate="entity.action.edit"> Edit</span>
                     </button>
-                </div>
             </div>
         </div>
     </div>

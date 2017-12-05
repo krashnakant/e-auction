@@ -2,69 +2,84 @@
 
     <div class="modal-header">
         <h4 class="modal-title" id="myItemLabel" jhiTranslate="eauctionApp.item.home.createOrEditLabel">Create or edit a Item</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <app-alert-error></app-alert-error>
         <div class="form-group" [hidden]="!item.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="item.id" readonly />
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="item.id" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.item.itemTitle" for="field_itemTitle">Item Title</label>
-            <input type="text" class="form-control" name="itemTitle" id="field_itemTitle" [(ngModel)]="item.itemTitle" required/>
+            <input type="text" class="form-control" name="itemTitle" id="field_itemTitle"
+                [(ngModel)]="item.itemTitle" required maxlength="255"/>
             <div [hidden]="!(editForm.controls.itemTitle?.dirty && editForm.controls.itemTitle?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.itemTitle?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemTitle?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemTitle?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
                 </small>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.item.itemDescription" for="field_itemDescription">Item Description</label>
-            <input type="text" class="form-control" name="itemDescription" id="field_itemDescription" [(ngModel)]="item.itemDescription"
-                required/>
+            <input type="text" class="form-control" name="itemDescription" id="field_itemDescription"
+                [(ngModel)]="item.itemDescription" required maxlength="255"/>
             <div [hidden]="!(editForm.controls.itemDescription?.dirty && editForm.controls.itemDescription?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.itemDescription?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemDescription?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemDescription?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
                 </small>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.item.itemImage" for="field_itemImage">Item Image</label>
             <div>
-                <img [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" style="max-height: 100px;" *ngIf="item.itemImage"
-                    alt="item image" />
+                <img [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" style="max-height: 100px;" *ngIf="item.itemImage" alt="item image"/>
                 <div *ngIf="item.itemImage" class="form-text text-danger clearfix">
                     <span class="pull-left">{{item.itemImageContentType}}, {{byteSize(item.itemImage)}}</span>
                     <button type="button" (click)="clearInputImage('itemImage', 'itemImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
                         <span class="fa fa-times"></span>
                     </button>
                 </div>
-                <input type="file" id="file_itemImage" (change)="setFileData($event, item, 'itemImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"
-                />
+                <input type="file" id="file_itemImage" (change)="setFileData($event, item, 'itemImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
             </div>
-            <input type="hidden" class="form-control" name="itemImage" id="field_itemImage" [(ngModel)]="item.itemImage" required/>
-            <input type="hidden" class="form-control" name="itemImageContentType" id="field_itemImageContentType" [(ngModel)]="item.itemImageContentType"
-            />
+            <input type="hidden" class="form-control" name="itemImage" id="field_itemImage"
+                [(ngModel)]="item.itemImage" required/>
+            <input type="hidden" class="form-control" name="itemImageContentType" id="field_itemImageContentType"
+                [(ngModel)]="item.itemImageContentType" />
             <div [hidden]="!(editForm.controls.itemImage?.dirty && editForm.controls.itemImage?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.itemImage?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemImage?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.item.basePrice" for="field_basePrice">Base Price</label>
-            <input type="number" class="form-control" name="basePrice" id="field_basePrice" [(ngModel)]="item.basePrice" required min="1"
-            />
+            <input type="number" class="form-control" name="basePrice" id="field_basePrice"
+                [(ngModel)]="item.basePrice" required min="1"/>
             <div [hidden]="!(editForm.controls.basePrice?.dirty && editForm.controls.basePrice?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.basePrice?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.basePrice?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
                 </small>
-                <small class="form-text text-danger" [hidden]="!editForm.controls.basePrice?.errors?.min" jhiTranslate="entity.validation.min"
-                    translateValues="{ min: 1 }">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.basePrice?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 1 }">
                     This field should be at least 1.
                 </small>
-                <small class="form-text text-danger" [hidden]="!editForm.controls.basePrice?.errors?.number" jhiTranslate="entity.validation.number">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.basePrice?.errors?.number" jhiTranslate="entity.validation.number">
                     This field should be a number.
                 </small>
             </div>
@@ -72,35 +87,50 @@
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.item.subCategory" for="field_subCategory">Sub Category</label>
-            <select class="form-control" id="field_subCategory" name="subCategory" [(ngModel)]="item.subCategoryId" required>
+            <select class="form-control" id="field_subCategory" name="subCategory" [(ngModel)]="item.subCategoryId"  required>
+                <option *ngIf="!editForm.value.subCategory" [ngValue]="null" selected></option>
                 <option [ngValue]="subCategoryOption.id" *ngFor="let subCategoryOption of subcategories; trackBy: trackSubCategoryById">{{subCategoryOption.subCategoryName}}</option>
             </select>
-            <div [hidden]="!(editForm.controls.subCategory?.dirty && editForm.controls.subCategory?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.subCategory?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
-                </small>
-            </div>
+        </div>
+        <div [hidden]="!(editForm.controls.subCategory?.dirty && editForm.controls.subCategory?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.subCategory?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eauctionApp.item.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="item.userId"  required>
+                <option *ngIf="!editForm.value.user" [ngValue]="null" selected></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.user?.dirty && editForm.controls.user?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.user?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eauctionApp.item.sale" for="field_sale">Sale</label>
-            <select class="form-control" id="field_sale" name="sale" [(ngModel)]="item.saleId" required>
+            <select class="form-control" id="field_sale" name="sale" [(ngModel)]="item.saleId"  required>
+                <option *ngIf="!editForm.value.sale" [ngValue]="null" selected></option>
                 <option [ngValue]="saleOption.id" *ngFor="let saleOption of sales; trackBy: trackSaleById">{{saleOption.auctionTitle}}</option>
             </select>
-            <div [hidden]="!(editForm.controls.sale?.dirty && editForm.controls.sale?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.sale?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
-                </small>
-            </div>
+        </div>
+        <div [hidden]="!(editForm.controls.sale?.dirty && editForm.controls.sale?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.sale?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;
-            <span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;
-            <span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>
 </form>

@@ -83,19 +83,12 @@ public class ItemServiceImpl implements ItemService{
         log.debug("Request to delete Item : {}", id);
         itemRepository.delete(id);
     }
-
-	@Override
+    
+    @Override
 	@Transactional(readOnly = true)
 	public Page<ItemDTO> findAllBySale_Id(Pageable pageable, Long id) {
 		log.debug("Request to get all Items by Sale");
         return itemRepository.findAllBySale_Id(pageable, id)
             .map(itemMapper::toDto);
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
-	public Long count() {
-		// TODO Auto-generated method stub
-		return itemRepository.count();
 	}
 }

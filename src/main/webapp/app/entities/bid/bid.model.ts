@@ -5,7 +5,7 @@ export class Bid implements BaseEntity {
         public id?: number,
         public bidPrice?: number,
         public itemId?: number,
-        public accountId?: number,
+        public userId?: number,
     ) {
     }
 }

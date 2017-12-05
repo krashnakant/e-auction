@@ -54,8 +54,6 @@ public class CacheConfiguration {
             cm.createCache(org.eauction.domain.Bid.class.getName(), jcacheConfiguration);
             cm.createCache(org.eauction.domain.Sale.class.getName() + ".items", jcacheConfiguration);
             cm.createCache(org.eauction.domain.Sale.class.getName() + ".accounts", jcacheConfiguration);
-            cm.createCache(org.eauction.domain.UserAccount.class.getName(), jcacheConfiguration);
-            cm.createCache(org.eauction.domain.UserAccount.class.getName() + ".sales", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

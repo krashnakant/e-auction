@@ -3,6 +3,8 @@ package org.eauction.web.rest;
 import org.eauction.EauctionApp;
 
 import org.eauction.domain.ItemAttribute;
+import org.eauction.domain.Attribute;
+import org.eauction.domain.Item;
 import org.eauction.repository.ItemAttributeRepository;
 import org.eauction.service.dto.ItemAttributeDTO;
 import org.eauction.service.mapper.ItemAttributeMapper;
@@ -85,6 +87,16 @@ public class ItemAttributeResourceIntTest {
     public static ItemAttribute createEntity(EntityManager em) {
         ItemAttribute itemAttribute = new ItemAttribute()
             .value(DEFAULT_VALUE);
+        // Add required entity
+        Attribute attribute = AttributeResourceIntTest.createEntity(em);
+        em.persist(attribute);
+        em.flush();
+        itemAttribute.setAttribute(attribute);
+        // Add required entity
+        Item item = ItemResourceIntTest.createEntity(em);
+        em.persist(item);
+        em.flush();
+        itemAttribute.setItem(item);
         return itemAttribute;
     }
 

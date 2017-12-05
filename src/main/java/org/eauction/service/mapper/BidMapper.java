@@ -8,15 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Bid and its DTO BidDTO.
  */
-@Mapper(componentModel = "spring", uses = {ItemMapper.class, UserAccountMapper.class})
+@Mapper(componentModel = "spring", uses = {ItemMapper.class, UserMapper.class})
 public interface BidMapper extends EntityMapper<BidDTO, Bid> {
 
     @Mapping(source = "item.id", target = "itemId")
-    @Mapping(source = "account.id", target = "accountId")
+    @Mapping(source = "item.itemTitle", target = "itemItemTitle")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.login", target = "userLogin")
     BidDTO toDto(Bid bid); 
 
     @Mapping(source = "itemId", target = "item")
-    @Mapping(source = "accountId", target = "account")
+    @Mapping(source = "userId", target = "user")
     Bid toEntity(BidDTO bidDTO);
 
     default Bid fromId(Long id) {

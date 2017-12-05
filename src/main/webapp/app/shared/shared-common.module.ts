@@ -6,6 +6,7 @@ import {
     EauctionSharedLibsModule,
     JhiLanguageHelper,
     FindLanguageFromKeyPipe,
+    UserLabelComponent,
     AppAlertComponent,
     AppAlertErrorComponent
 } from './';
@@ -16,6 +17,7 @@ import {
     ],
     declarations: [
         FindLanguageFromKeyPipe,
+        UserLabelComponent,
         AppAlertComponent,
         AppAlertErrorComponent
     ],
@@ -31,6 +33,7 @@ import {
     exports: [
         EauctionSharedLibsModule,
         FindLanguageFromKeyPipe,
+        UserLabelComponent,
         AppAlertComponent,
         AppAlertErrorComponent
     ]

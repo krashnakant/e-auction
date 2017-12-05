@@ -23,6 +23,7 @@ export class BidPopupService {
             if (isOpen) {
                 resolve(this.ngbModalRef);
             }
+
             if (id) {
                 this.bidService.find(id).subscribe((bid) => {
                     this.ngbModalRef = this.bidModalRef(component, bid);
@@ -39,13 +40,13 @@ export class BidPopupService {
     }
 
     bidModalRef(component: Component, bid: Bid): NgbModalRef {
-        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static' });
+        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.bid = bid;
         modalRef.result.then((result) => {
-            this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.ngbModalRef = null;
         }, (reason) => {
-            this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.ngbModalRef = null;
         });
         return modalRef;

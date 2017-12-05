@@ -7,8 +7,7 @@
                 <small>
                     <span jhiTranslate="eauctionApp.attribute.subCategory">Sub Category</span>
                     <div *ngIf="attribute.subCategoryId">
-                        <a [routerLink]="['/sub-category', attribute.subCategoryId]" href="#">
-                            <app-sub-category-label [id]="attribute.subCategoryId"></app-sub-category-label></a>
+                        <a [routerLink]="['/sub-category', attribute.subCategoryId]">{{attribute.subCategorySubCategoryName}}</a>
                     </div>
                 </small>
             </div>

@@ -17,7 +17,7 @@
             },
             "bidPrice": "Bid Price",
             "item": "Item",
-            "account": "Account"
+            "user": "User"
         }
     }
 }

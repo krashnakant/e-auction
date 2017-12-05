@@ -3,15 +3,15 @@ package org.eauction.web.rest;
 import org.eauction.EauctionApp;
 
 import org.eauction.domain.Bid;
+import org.eauction.domain.Item;
+import org.eauction.domain.User;
 import org.eauction.repository.BidRepository;
 import org.eauction.service.BidService;
-import org.eauction.service.UserAccountService;
 import org.eauction.service.dto.BidDTO;
 import org.eauction.service.mapper.BidMapper;
 import org.eauction.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -40,7 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @see BidResource
  */
-@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = EauctionApp.class)
 public class BidResourceIntTest {
@@ -56,9 +55,6 @@ public class BidResourceIntTest {
 
     @Autowired
     private BidService bidService;
-    
-    @Autowired
-    private UserAccountService userAccountService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -79,7 +75,7 @@ public class BidResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final BidResource bidResource = new BidResource(bidService, userAccountService);
+        final BidResource bidResource = new BidResource(bidService);
         this.restBidMockMvc = MockMvcBuilders.standaloneSetup(bidResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -96,6 +92,16 @@ public class BidResourceIntTest {
     public static Bid createEntity(EntityManager em) {
         Bid bid = new Bid()
             .bidPrice(DEFAULT_BID_PRICE);
+        // Add required entity
+        Item item = ItemResourceIntTest.createEntity(em);
+        em.persist(item);
+        em.flush();
+        bid.setItem(item);
+        // Add required entity
+        User user = UserResourceIntTest.createEntity(em);
+        em.persist(user);
+        em.flush();
+        bid.setUser(user);
         return bid;
     }
 

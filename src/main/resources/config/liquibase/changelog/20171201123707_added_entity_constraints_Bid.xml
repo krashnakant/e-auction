@@ -14,11 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="item"/>
 
-        <addForeignKeyConstraint baseColumnNames="account_id"
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="bid"
-                                 constraintName="fk_bid_account_id"
+                                 constraintName="fk_bid_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user_account"/>
+                                 referencedTableName="app_user"/>
 
     </changeSet>
 </databaseChangeLog>

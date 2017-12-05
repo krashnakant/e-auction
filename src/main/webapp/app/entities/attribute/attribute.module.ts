@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { EauctionSharedModule } from '../../shared';
+
 import {
     AttributeService,
     AttributePopupService,
@@ -14,7 +15,6 @@ import {
     attributeRoute,
     attributePopupRoute,
 } from './';
-import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...attributeRoute,
@@ -24,7 +24,6 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
-        EntitySharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [

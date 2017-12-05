@@ -5,7 +5,7 @@
                 <img class="card-img-top" [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" alt="item image">
             </a>
             <div class="card-body">
-                <h3 class="card-title">{{item.itemTitle}} (₹ {{item.basePrice}})</h3>
+                <h3 class="card-title">{{item.itemTitle}} (₹ {{item.basePrice}})[{{item.userLogin}}]</h3>
                 <ngb-tabset>
                     <ngb-tab>
                         <ng-template ngbTabTitle>
@@ -30,15 +30,24 @@
                 </ngb-tabset>
             </div>
             <div class="card-footer bg-transparent">
-                <button type="submit" (click)="previousState()" class="btn btn-info btn-sm">
-                    <span class="fa fa-arrow-left"></span>&nbsp;
-                    <span jhiTranslate="entity.action.back"> Back</span>
-                </button>
-                <button type="button" [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
-                    <span class="fa fa-pencil"></span>&nbsp;
-                    <span jhiTranslate="entity.action.edit"> Edit</span>
-                </button>
-                <h4 class="d-inline-block float-right"><app-user-account-label [id]="item.accountId"></app-user-account-label></h4>
+                <div class="d-inline-block mr-2">
+                    <span jhiTranslate="eauctionApp.item.subCategory">Sub Category</span>: 
+                    <span *ngIf="item.subCategoryId"><a [routerLink]="['/sub-category', item.subCategoryId]">{{item.subCategorySubCategoryName}}</a></span>
+                </div>
+                <div class="d-inline-block mr-2">
+                    <span jhiTranslate="eauctionApp.item.sale">Sale</span>: 
+                    <span *ngIf="item.saleId"><a [routerLink]="['/sale', item.saleId]">{{item.saleAuctionTitle}}</a></span>
+                </div>
+                <div class="d-block mt-2">
+                    <button type="submit" (click)="previousState()" class="btn btn-info btn-sm">
+                        <span class="fa fa-arrow-left"></span>&nbsp;
+                        <span jhiTranslate="entity.action.back"> Back</span>
+                    </button>
+                    <button type="button" [routerLink]="['/', { outlets: { popup: 'item/'+ item.id + '/edit'} }]" replaceUrl="true" class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>&nbsp;
+                        <span jhiTranslate="entity.action.edit"> Edit</span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>

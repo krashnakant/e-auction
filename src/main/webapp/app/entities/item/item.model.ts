@@ -10,7 +10,7 @@ export class Item implements BaseEntity {
         public basePrice?: number,
         public itemAttributes?: BaseEntity[],
         public subCategoryId?: number,
-        public accountId?: number,
+        public userId?: number,
         public saleId?: number,
     ) {
     }

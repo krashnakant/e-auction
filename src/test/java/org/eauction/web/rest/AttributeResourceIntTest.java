@@ -3,6 +3,7 @@ package org.eauction.web.rest;
 import org.eauction.EauctionApp;
 
 import org.eauction.domain.Attribute;
+import org.eauction.domain.SubCategory;
 import org.eauction.repository.AttributeRepository;
 import org.eauction.service.dto.AttributeDTO;
 import org.eauction.service.mapper.AttributeMapper;
@@ -85,6 +86,11 @@ public class AttributeResourceIntTest {
     public static Attribute createEntity(EntityManager em) {
         Attribute attribute = new Attribute()
             .attributeName(DEFAULT_ATTRIBUTE_NAME);
+        // Add required entity
+        SubCategory subCategory = SubCategoryResourceIntTest.createEntity(em);
+        em.persist(subCategory);
+        em.flush();
+        attribute.setSubCategory(subCategory);
         return attribute;
     }
 
