@@ -21,7 +21,7 @@
             "basePrice": "Base Price",
             "itemAttributes": "Item Attributes",
             "subCategory": "Sub Category",
-            "account": "Account",
+            "user": "User",
             "sale": "Sale"
         }
     }

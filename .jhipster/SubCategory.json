@@ -9,9 +9,10 @@
         },
         {
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
             "relationshipName": "category",
             "otherEntityName": "category",
-            "otherEntityField": "id"
+            "otherEntityField": "categoryName"
         }
     ],
     "fields": [
@@ -19,8 +20,10 @@
             "fieldName": "subCategoryName",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
-            ]
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
         }
     ],
     "changelogDate": "20171201123702",

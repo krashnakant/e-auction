@@ -24,10 +24,12 @@ public class Attribute implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "attribute_name", nullable = false)
+    @Size(max = 255)
+    @Column(name = "attribute_name", length = 255, nullable = false)
     private String attributeName;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private SubCategory subCategory;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

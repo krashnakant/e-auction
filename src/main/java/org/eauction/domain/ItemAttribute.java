@@ -15,7 +15,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "item_attribute")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class ItemAttribute implements Serializable {
+public class ItemAttribute extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,13 +24,16 @@ public class ItemAttribute implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "app_value", nullable = false)
+    @Size(max = 255)
+    @Column(name = "app_value", length = 255, nullable = false)
     private String value;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private Attribute attribute;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private Item item;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

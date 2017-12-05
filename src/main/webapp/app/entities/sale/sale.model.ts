@@ -8,7 +8,6 @@ export class Sale implements BaseEntity {
         public end?: any,
         public items?: BaseEntity[],
         public categoryId?: number,
-        public accounts?: BaseEntity[],
     ) {
     }
 }

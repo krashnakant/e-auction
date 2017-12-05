@@ -14,11 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="sub_category"/>
 
-        <addForeignKeyConstraint baseColumnNames="account_id"
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="item"
-                                 constraintName="fk_item_account_id"
+                                 constraintName="fk_item_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user_account"/>
+                                 referencedTableName="app_user"/>
 
         <addForeignKeyConstraint baseColumnNames="sale_id"
                                  baseTableName="item"

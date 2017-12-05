@@ -1,6 +1,6 @@
 <ul class="list-group" *ngIf="itemAttributes?.length > 0">
     <li class="list-group-item" *ngFor="let itemAttribute of itemAttributes ;trackBy: trackId">
-        <small><app-attribute-label [id]="itemAttribute.attributeId"></app-attribute-label>: {{itemAttribute.value}}</small>
+        <small>{{itemAttribute.attributeAttributeName}}: {{itemAttribute.value}}</small>
     </li>
 </ul>
 <div class="alert alert-info" role="alert" *ngIf="itemAttributes?.length == 0">

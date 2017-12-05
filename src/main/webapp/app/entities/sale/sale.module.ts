@@ -18,7 +18,6 @@ import {
     salePopupRoute,
     SaleResolvePagingParams,
 } from './';
-import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...saleRoute,
@@ -28,7 +27,6 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
-        EntitySharedModule,
         EauctionItemModule,
         RouterModule.forChild(ENTITY_STATES)
     ],

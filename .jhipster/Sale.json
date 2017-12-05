@@ -9,17 +9,10 @@
         },
         {
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
             "relationshipName": "category",
             "otherEntityName": "category",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "sales",
-            "relationshipName": "accounts",
-            "otherEntityName": "userAccount",
-            "otherEntityField": "id",
-            "ownerSide": true
+            "otherEntityField": "categoryName"
         }
     ],
     "fields": [
@@ -27,19 +20,21 @@
             "fieldName": "auctionTitle",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
-            ]
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
         },
         {
             "fieldName": "start",
-            "fieldType": "ZonedDateTime",
+            "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
             "fieldName": "end",
-            "fieldType": "ZonedDateTime",
+            "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
             ]

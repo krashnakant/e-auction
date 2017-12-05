@@ -19,8 +19,7 @@
             "start": "Start",
             "end": "End",
             "items": "Items",
-            "category": "Category",
-            "accounts": "Accounts"
+            "category": "Category"
         }
     }
 }

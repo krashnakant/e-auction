@@ -14,16 +14,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="category"/>
 
-        <addForeignKeyConstraint baseColumnNames="sales_id"
-                                 baseTableName="sale_accounts"
-                                 constraintName="fk_sale_accounts_sales_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="sale"/>
-        <addForeignKeyConstraint baseColumnNames="accounts_id"
-                                 baseTableName="sale_accounts"
-                                 constraintName="fk_sale_accounts_accounts_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="user_account"/>
-        
     </changeSet>
 </databaseChangeLog>

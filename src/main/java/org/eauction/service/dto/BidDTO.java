@@ -4,6 +4,7 @@ package org.eauction.service.dto;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -21,7 +22,19 @@ public class BidDTO implements Serializable {
 
     private Long itemId;
 
-    private Long accountId;
+    private String itemItemTitle;
+
+    private Long userId;
+
+    private String userLogin;
+    
+    private String createdBy;
+
+    private Instant createdDate;
+
+    private String lastModifiedBy;
+
+    private Instant lastModifiedDate;
 
     public Long getId() {
         return id;
@@ -47,15 +60,63 @@ public class BidDTO implements Serializable {
         this.itemId = itemId;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public String getItemItemTitle() {
+        return itemItemTitle;
     }
 
-    public void setAccountId(Long userAccountId) {
-        this.accountId = userAccountId;
+    public void setItemItemTitle(String itemItemTitle) {
+        this.itemItemTitle = itemItemTitle;
     }
 
-    @Override
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
+    public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

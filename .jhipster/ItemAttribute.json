@@ -3,15 +3,17 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
             "relationshipName": "attribute",
             "otherEntityName": "attribute",
-            "otherEntityField": "id"
+            "otherEntityField": "attributeName"
         },
         {
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
             "relationshipName": "item",
             "otherEntityName": "item",
-            "otherEntityField": "id"
+            "otherEntityField": "itemTitle"
         }
     ],
     "fields": [
@@ -19,8 +21,10 @@
             "fieldName": "value",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
-            ]
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
         }
     ],
     "changelogDate": "20171201123705",

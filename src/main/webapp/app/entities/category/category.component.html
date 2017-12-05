@@ -18,34 +18,22 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <!--<th>
-                                    <span jhiTranslate="global.field.id">ID</span>
-                                </th>-->
-                                <th>
-                                    <span jhiTranslate="eauctionApp.category.categoryImage">Category Image</span>
-                                </th>
-                                <th>
-                                    <span jhiTranslate="eauctionApp.category.categoryName">Category Name</span>
-                                </th>
+                                <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
+                                <th><span jhiTranslate="eauctionApp.category.categoryName">Category Name</span></th>
+                                <th><span jhiTranslate="eauctionApp.category.categoryImage">Category Image</span></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let category of categories ;trackBy: trackId">
-                                <!--<td>
-                                    <a [routerLink]="['../category', category.id ]">{{category.id}}</a>
-                                </td>-->
+                                <!--<td><a [routerLink]="['../category', category.id ]">{{category.id}}</a></td>-->
+                                <td>{{category.categoryName}}</td>
                                 <td>
                                     <a *ngIf="category.categoryImage" (click)="openFile(category.categoryImageContentType, category.categoryImage)">
-                                        <img [src]="'data:' + category.categoryImageContentType + ';base64,' + category.categoryImage" style="max-height: 50px;"
-                                            alt="category image" />
+                                        <img [src]="'data:' + category.categoryImageContentType + ';base64,' + category.categoryImage" style="max-height: 50px;" alt="category image"/>
                                     </a>
-                                    <!--<span *ngIf="category.categoryImage">{{category.categoryImageContentType}}, {{byteSize(category.categoryImage)}}</span>-->
+                                    <!--<span *ngIf="category.categoryImage">{{category.categoryImageContentType}} {{byteSize(category.categoryImage)}}</span>-->
                                 </td>
-                                <td>
-                                    <a [routerLink]="['../category', category.id ]">{{category.categoryName}}</a>
-                                </td>
-                                
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container">
                                         <button type="submit" [routerLink]="['../category', category.id ]" class="btn btn-info btn-sm">
@@ -71,3 +59,4 @@
         </div>
     </section>
 </div>
+

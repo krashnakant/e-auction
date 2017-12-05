@@ -10,6 +10,7 @@ import { Item } from './item.model';
 import { ItemPopupService } from './item-popup.service';
 import { ItemService } from './item.service';
 import { SubCategory, SubCategoryService } from '../sub-category';
+import { User, UserService } from '../../shared';
 import { Sale, SaleService } from '../sale';
 import { ResponseWrapper } from '../../shared';
 
@@ -24,6 +25,8 @@ export class ItemDialogComponent implements OnInit {
 
     subcategories: SubCategory[];
 
+    users: User[];
+
     sales: Sale[];
 
     constructor(
@@ -32,6 +35,7 @@ export class ItemDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private itemService: ItemService,
         private subCategoryService: SubCategoryService,
+        private userService: UserService,
         private saleService: SaleService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
@@ -42,6 +46,8 @@ export class ItemDialogComponent implements OnInit {
         this.isSaving = false;
         this.subCategoryService.query()
             .subscribe((res: ResponseWrapper) => { this.subcategories = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.saleService.query()
             .subscribe((res: ResponseWrapper) => { this.sales = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -97,6 +103,10 @@ export class ItemDialogComponent implements OnInit {
     }
 
     trackSubCategoryById(index: number, item: SubCategory) {
+        return item.id;
+    }
+
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 

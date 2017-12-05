@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { User, UserService } from '../../../shared';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
     selector: 'app-user-label',

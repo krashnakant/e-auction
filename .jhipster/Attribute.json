@@ -3,9 +3,10 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
             "relationshipName": "subCategory",
             "otherEntityName": "subCategory",
-            "otherEntityField": "id"
+            "otherEntityField": "subCategoryName"
         }
     ],
     "fields": [
@@ -13,8 +14,10 @@
             "fieldName": "attributeName",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
-            ]
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
         }
     ],
     "changelogDate": "20171201123703",

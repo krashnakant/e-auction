@@ -3,15 +3,17 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
             "relationshipName": "item",
             "otherEntityName": "item",
-            "otherEntityField": "id"
+            "otherEntityField": "itemTitle"
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "account",
-            "otherEntityName": "userAccount",
-            "otherEntityField": "id"
+            "relationshipValidateRules": "required",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
         }
     ],
     "fields": [

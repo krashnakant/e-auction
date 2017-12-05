@@ -7,7 +7,6 @@ import { EauctionAttributeModule } from './attribute/attribute.module';
 import { EauctionItemAttributeModule } from './item-attribute/item-attribute.module';
 import { EauctionSaleModule } from './sale/sale.module';
 import { EauctionBidModule } from './bid/bid.module';
-import { EauctionUserAccountModule } from './user-account/user-account.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -19,7 +18,6 @@ import { EauctionUserAccountModule } from './user-account/user-account.module';
         EauctionItemAttributeModule,
         EauctionSaleModule,
         EauctionBidModule,
-        EauctionUserAccountModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

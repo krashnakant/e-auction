@@ -7,9 +7,8 @@
                 <small>
                     <span jhiTranslate="eauctionApp.subCategory.category">Category</span>
                     <div *ngIf="subCategory.categoryId">
-                        <a [routerLink]="['/category', subCategory.categoryId]" href="#"><app-category-label [id]="subCategory.categoryId"></app-category-label></a>
+                        <a [routerLink]="['/category', subCategory.categoryId]">{{subCategory.categoryCategoryName}}</a>
                     </div>
-
                 </small>
             </div>
             <div class="card-footer bg-transparent">

@@ -18,40 +18,24 @@
                     <table class="table table-hover">
                         <thead>
                             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-                                <!--<th jhiSortBy="id">
-                                    <span jhiTranslate="global.field.id">ID</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>-->
-                                <th jhiSortBy="bidPrice">
-                                    <span jhiTranslate="eauctionApp.bid.bidPrice">Bid Price</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>
-                                <th jhiSortBy="itemId">
-                                    <span jhiTranslate="eauctionApp.bid.item">Item</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>
-                                <th jhiSortBy="accountId">
-                                    <span jhiTranslate="eauctionApp.bid.account">Account</span>
-                                    <span class="fa fa-sort"></span>
-                                </th>
+                                <!-- <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th> -->
+                                <th jhiSortBy="bidPrice"><span jhiTranslate="eauctionApp.bid.bidPrice">Bid Price</span> <span class="fa fa-sort"></span></th>
+                                <th jhiSortBy="itemItemTitle"><span jhiTranslate="eauctionApp.bid.item">Item</span> <span class="fa fa-sort"></span></th>
+                                <th jhiSortBy="userLogin"><span jhiTranslate="eauctionApp.bid.user">User</span> <span class="fa fa-sort"></span></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
                             <tr *ngFor="let bid of bids ;trackBy: trackId">
-                                <!--<td>
-                                    <a [routerLink]="['../bid', bid.id ]">{{bid.id}}</a>
-                                </td>-->
-                                <td><a [routerLink]="['../bid', bid.id ]">{{bid.bidPrice}}</a></td>
+                                <!--<td><a [routerLink]="['../bid', bid.id ]">{{bid.id}}</a></td>-->
+                                <td>{{bid.bidPrice}}</td>
                                 <td>
                                     <div *ngIf="bid.itemId">
-                                        <a [routerLink]="['../item', bid.itemId  ]"><app-item-label [id]="bid.itemId"></app-item-label></a>
+                                        <a [routerLink]="['../item', bid.itemId  ]">{{bid.itemItemTitle}}</a>
                                     </div>
                                 </td>
                                 <td>
-                                    <div *ngIf="bid.accountId">
-                                        <a [routerLink]="['../user-account', bid.accountId  ]"><app-user-account-label [id]="bid.accountId"></app-user-account-label></a>
-                                    </div>
+                                    {{bid.userLogin}}
                                 </td>
                                 <td class="text-right">
                                     <div class="btn-group flex-btn-group-container">

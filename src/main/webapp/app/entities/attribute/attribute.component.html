@@ -18,28 +18,19 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <!--<th>
-                                    <span jhiTranslate="global.field.id">ID</span>
-                                </th>-->
-                                <th>
-                                    <span jhiTranslate="eauctionApp.attribute.attributeName">Attribute Name</span>
-                                </th>
-                                <th>
-                                    <span jhiTranslate="eauctionApp.attribute.subCategory">Sub Category</span>
-                                </th>
+                                <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
+                                <th><span jhiTranslate="eauctionApp.attribute.attributeName">Attribute Name</span></th>
+                                <th><span jhiTranslate="eauctionApp.attribute.subCategory">Sub Category</span></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let attribute of attributes ;trackBy: trackId">
-                                <!--<td>
-                                    <a [routerLink]="['../attribute', attribute.id ]">{{attribute.id}}</a>
-                                </td>-->
-                                <td><a [routerLink]="['../attribute', attribute.id ]">{{attribute.attributeName}}</a></td>
+                                <!-- <td><a [routerLink]="['../attribute', attribute.id ]">{{attribute.id}}</a></td> -->
+                                <td>{{attribute.attributeName}}</td>
                                 <td>
                                     <div *ngIf="attribute.subCategoryId">
-                                        <a [routerLink]="['../sub-category', attribute.subCategoryId  ]" href="#">
-                                            <app-sub-category-label [id]="attribute.subCategoryId"></app-sub-category-label></a></a>
+                                        <a [routerLink]="['../sub-category', attribute.subCategoryId  ]">{{attribute.subCategorySubCategoryName}}</a>
                                     </div>
                                 </td>
                                 <td class="text-right">

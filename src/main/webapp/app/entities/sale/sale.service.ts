@@ -70,9 +70,9 @@ export class SaleService {
     private convertItemFromServer(json: any): Sale {
         const entity: Sale = Object.assign(new Sale(), json);
         entity.start = this.dateUtils
-            .convertDateTimeFromServer(json.start);
+            .convertLocalDateFromServer(json.start);
         entity.end = this.dateUtils
-            .convertDateTimeFromServer(json.end);
+            .convertLocalDateFromServer(json.end);
         return entity;
     }
 
@@ -81,10 +81,10 @@ export class SaleService {
      */
     private convert(sale: Sale): Sale {
         const copy: Sale = Object.assign({}, sale);
-
-        copy.start = this.dateUtils.toDate(sale.start);
-
-        copy.end = this.dateUtils.toDate(sale.end);
+        copy.start = this.dateUtils
+            .convertLocalDateToServer(sale.start);
+        copy.end = this.dateUtils
+            .convertLocalDateToServer(sale.end);
         return copy;
     }
 }

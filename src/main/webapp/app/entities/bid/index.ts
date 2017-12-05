@@ -5,5 +5,4 @@ export * from './bid-dialog.component';
 export * from './bid-delete-dialog.component';
 export * from './bid-detail.component';
 export * from './bid.component';
-export * from './bid-now/bid-now.component'
 export * from './bid.route';

@@ -4,6 +4,7 @@ package org.eauction.service.dto;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -17,9 +18,11 @@ public class ItemDTO implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 255)
     private String itemTitle;
 
     @NotNull
+    @Size(max = 255)
     private String itemDescription;
 
     @NotNull
@@ -33,9 +36,23 @@ public class ItemDTO implements Serializable {
 
     private Long subCategoryId;
 
-    private Long accountId;
+    private String subCategorySubCategoryName;
+
+    private Long userId;
+
+    private String userLogin;
 
     private Long saleId;
+
+    private String saleAuctionTitle;
+    
+    private String createdBy;
+
+    private Instant createdDate;
+
+    private String lastModifiedBy;
+
+    private Instant lastModifiedDate;
 
     public Long getId() {
         return id;
@@ -93,12 +110,28 @@ public class ItemDTO implements Serializable {
         this.subCategoryId = subCategoryId;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public String getSubCategorySubCategoryName() {
+        return subCategorySubCategoryName;
     }
 
-    public void setAccountId(Long userAccountId) {
-        this.accountId = userAccountId;
+    public void setSubCategorySubCategoryName(String subCategorySubCategoryName) {
+        this.subCategorySubCategoryName = subCategorySubCategoryName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     public Long getSaleId() {
@@ -109,7 +142,47 @@ public class ItemDTO implements Serializable {
         this.saleId = saleId;
     }
 
-    @Override
+    public String getSaleAuctionTitle() {
+        return saleAuctionTitle;
+    }
+
+    public void setSaleAuctionTitle(String saleAuctionTitle) {
+        this.saleAuctionTitle = saleAuctionTitle;
+    }
+
+    public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

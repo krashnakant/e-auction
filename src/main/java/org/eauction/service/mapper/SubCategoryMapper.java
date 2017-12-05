@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface SubCategoryMapper extends EntityMapper<SubCategoryDTO, SubCategory> {
 
     @Mapping(source = "category.id", target = "categoryId")
+    @Mapping(source = "category.categoryName", target = "categoryCategoryName")
     SubCategoryDTO toDto(SubCategory subCategory); 
 
     @Mapping(target = "attributes", ignore = true)

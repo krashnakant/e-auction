@@ -3,6 +3,7 @@ package org.eauction.web.rest;
 import org.eauction.EauctionApp;
 
 import org.eauction.domain.SubCategory;
+import org.eauction.domain.Category;
 import org.eauction.repository.SubCategoryRepository;
 import org.eauction.service.SubCategoryService;
 import org.eauction.service.dto.SubCategoryDTO;
@@ -89,6 +90,11 @@ public class SubCategoryResourceIntTest {
     public static SubCategory createEntity(EntityManager em) {
         SubCategory subCategory = new SubCategory()
             .subCategoryName(DEFAULT_SUB_CATEGORY_NAME);
+        // Add required entity
+        Category category = CategoryResourceIntTest.createEntity(em);
+        em.persist(category);
+        em.flush();
+        subCategory.setCategory(category);
         return subCategory;
     }
 

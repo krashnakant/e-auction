@@ -15,9 +15,12 @@ public class SubCategoryDTO implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 255)
     private String subCategoryName;
 
     private Long categoryId;
+
+    private String categoryCategoryName;
 
     public Long getId() {
         return id;
@@ -41,6 +44,14 @@ public class SubCategoryDTO implements Serializable {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getCategoryCategoryName() {
+        return categoryCategoryName;
+    }
+
+    public void setCategoryCategoryName(String categoryCategoryName) {
+        this.categoryCategoryName = categoryCategoryName;
     }
 
     @Override

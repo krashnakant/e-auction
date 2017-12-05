@@ -6,5 +6,4 @@ export * from './sale-delete-dialog.component';
 export * from './sale-detail.component';
 export * from './sale.component';
 export * from './sale-list/sale-list.component';
-export * from './sale-label/sale-label.component';
 export * from './sale.route';

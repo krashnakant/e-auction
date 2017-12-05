@@ -19,7 +19,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "item")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Item implements Serializable {
+public class Item extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,11 +28,13 @@ public class Item implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "item_title", nullable = false)
+    @Size(max = 255)
+    @Column(name = "item_title", length = 255, nullable = false)
     private String itemTitle;
 
     @NotNull
-    @Column(name = "item_description", nullable = false)
+    @Size(max = 255)
+    @Column(name = "item_description", length = 255, nullable = false)
     private String itemDescription;
 
     @NotNull
@@ -53,13 +55,16 @@ public class Item implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemAttribute> itemAttributes = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private SubCategory subCategory;
 
-    @ManyToOne
-    private UserAccount account;
+    @ManyToOne(optional = false)
+    @NotNull
+    private User user;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     private Sale sale;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -174,17 +179,17 @@ public class Item implements Serializable {
         this.subCategory = subCategory;
     }
 
-    public UserAccount getAccount() {
-        return account;
+    public User getUser() {
+        return user;
     }
 
-    public Item account(UserAccount userAccount) {
-        this.account = userAccount;
+    public Item user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setAccount(UserAccount userAccount) {
-        this.account = userAccount;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Sale getSale() {

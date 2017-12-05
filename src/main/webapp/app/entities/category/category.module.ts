@@ -16,7 +16,6 @@ import {
     categoryRoute,
     categoryPopupRoute,
 } from './';
-import { EntitySharedModule } from '../entity-shared.module';
 
 const ENTITY_STATES = [
     ...categoryRoute,
@@ -26,7 +25,6 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         EauctionSharedModule,
-        EntitySharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
@@ -40,7 +38,6 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         CategoryComponent,
-        CategoryDetailComponent,
         CategoryDialogComponent,
         CategoryPopupComponent,
         CategoryDeleteDialogComponent,

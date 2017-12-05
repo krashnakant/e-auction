@@ -3,6 +3,7 @@ package org.eauction.web.rest;
 import org.eauction.EauctionApp;
 
 import org.eauction.domain.Sale;
+import org.eauction.domain.Category;
 import org.eauction.repository.SaleRepository;
 import org.eauction.service.SaleService;
 import org.eauction.service.dto.SaleDTO;
@@ -24,13 +25,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-import static org.eauction.web.rest.TestUtil.sameInstant;
 import static org.eauction.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -49,11 +47,11 @@ public class SaleResourceIntTest {
     private static final String DEFAULT_AUCTION_TITLE = "AAAAAAAAAA";
     private static final String UPDATED_AUCTION_TITLE = "BBBBBBBBBB";
 
-    private static final ZonedDateTime DEFAULT_START = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_START = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final LocalDate DEFAULT_START = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_START = LocalDate.now(ZoneId.systemDefault());
 
-    private static final ZonedDateTime DEFAULT_END = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_END = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final LocalDate DEFAULT_END = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_END = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private SaleRepository saleRepository;
@@ -102,6 +100,11 @@ public class SaleResourceIntTest {
             .auctionTitle(DEFAULT_AUCTION_TITLE)
             .start(DEFAULT_START)
             .end(DEFAULT_END);
+        // Add required entity
+        Category category = CategoryResourceIntTest.createEntity(em);
+        em.persist(category);
+        em.flush();
+        sale.setCategory(category);
         return sale;
     }
 
@@ -220,8 +223,8 @@ public class SaleResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sale.getId().intValue())))
             .andExpect(jsonPath("$.[*].auctionTitle").value(hasItem(DEFAULT_AUCTION_TITLE.toString())))
-            .andExpect(jsonPath("$.[*].start").value(hasItem(sameInstant(DEFAULT_START))))
-            .andExpect(jsonPath("$.[*].end").value(hasItem(sameInstant(DEFAULT_END))));
+            .andExpect(jsonPath("$.[*].start").value(hasItem(DEFAULT_START.toString())))
+            .andExpect(jsonPath("$.[*].end").value(hasItem(DEFAULT_END.toString())));
     }
 
     @Test
@@ -236,8 +239,8 @@ public class SaleResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(sale.getId().intValue()))
             .andExpect(jsonPath("$.auctionTitle").value(DEFAULT_AUCTION_TITLE.toString()))
-            .andExpect(jsonPath("$.start").value(sameInstant(DEFAULT_START)))
-            .andExpect(jsonPath("$.end").value(sameInstant(DEFAULT_END)));
+            .andExpect(jsonPath("$.start").value(DEFAULT_START.toString()))
+            .andExpect(jsonPath("$.end").value(DEFAULT_END.toString()));
     }
 
     @Test

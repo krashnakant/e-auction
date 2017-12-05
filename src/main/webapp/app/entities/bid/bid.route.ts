@@ -51,16 +51,6 @@ export const bidPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'bid/item/:item',
-        component: BidPopupComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'eauctionApp.bid.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
         path: 'bid/:id/delete',
         component: BidDeletePopupComponent,
         data: {
